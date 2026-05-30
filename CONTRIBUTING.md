@@ -71,3 +71,48 @@ Avoid vague prompts, generic investment advice, or workflows that rely on unstat
 - [ ] Freshness and fallback behavior are explicit.
 - [ ] Output format is structured.
 - [ ] README tables are updated if a category or major workflow is added, removed, or renamed.
+
+## PR Title & Commit Conventions
+
+This repo follows [Conventional Commits](https://www.conventionalcommits.org/).
+A GitHub Action (`.github/workflows/pr-title.yml`) validates every PR title. If
+the repo squash-merges, the PR title becomes the squash commit subject on
+`main`, so only the PR title needs to follow the format — individual commits on
+a branch are unconstrained.
+
+### Format
+
+```
+<type>(<scope>): <subject>
+```
+
+### Types
+
+| type       | when to use                                                        |
+|------------|--------------------------------------------------------------------|
+| `feat`     | new category skill, new workflow, new capability                   |
+| `fix`      | bug in a skill, workflow, or script; broken link; misrouting       |
+| `docs`     | README, CONTRIBUTING, comments, templates                          |
+| `refactor` | restructure an existing skill/workflow without changing behavior   |
+| `chore`    | repo maintenance, scaffolding, dependency bumps                    |
+| `ci`       | workflows, lint config                                             |
+| `style`    | formatting, whitespace, pure layout                               |
+
+### Scopes (optional)
+
+A category short name (the `llmquant-*` folder without the prefix, e.g.
+`options`, `macro`, `crypto`) or a cross-cutting area: `templates` · `ci` ·
+`infra` · `readme` · `zh-CN`. Small PRs may omit a scope.
+
+### Subject
+
+- Imperative mood, lowercase first word (`add`, not `Added`).
+- No trailing period.
+- Fit within ~72 characters.
+
+### Examples
+
+- `feat(options): add iv-term-structure workflow`
+- `fix(macro): correct fallback when CPI release is missing`
+- `docs: add issue and PR templates`
+- `ci: enforce conventional-commit PR titles`
