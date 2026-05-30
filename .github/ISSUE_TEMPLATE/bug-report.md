@@ -22,7 +22,7 @@ For missing data coverage, use the "Data capability request" template instead.
 
 <!--
 Where it happened: Claude Code, Claude.ai, Cursor, Codex CLI, etc.
-How installed: `npx skills add LLMQuant/skills`, `./install.sh`, or manual copy.
+How installed: `npx skills add LLMQuant/skills`, native plugin (`/plugin install`), or manual copy.
 -->
 
 

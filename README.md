@@ -15,7 +15,13 @@
 
 </div>
 
-Reusable Agent Skills for Claude Code, Claude.ai, Cursor, and Codex, grounded in **LLMQuant Data**.
+Reusable Agent Skills for Claude Code, Codex, Cursor, Antigravity, and other agents, grounded in **LLMQuant Data**.
+
+```bash
+npx skills add LLMQuant/skills      # Claude Code · Codex · Cursor · Antigravity · OpenClaw · Hermes · …
+```
+
+> New here? See [Install](#install) for global / specific installs and native plugin setup.
 
 This repository is a skill catalog. The install/import unit is a category skill folder under `skills/llmquant-*`, not an isolated `SKILL.md` file and not a single workflow file.
 
@@ -31,12 +37,12 @@ skills/
 │   └── workflows/
 └── ...
 
-.claude-plugin/
-.cursor-plugin/
-.codex-plugin/
+.claude-plugin/     # Claude Code plugin + marketplace manifests
+.codex-plugin/      # Codex plugin manifest
+.cursor-plugin/     # Cursor plugin manifest
+assets/
 README.md
 README.zh-CN.md
-install.sh
 ```
 
 Each category `SKILL.md` is a router. It indexes workflows in `workflows/*.md`, tells the agent which workflow to load, and enforces the LLMQuant Data evidence contract.
@@ -64,100 +70,50 @@ Each category `SKILL.md` is a router. It indexes workflows in `workflows/*.md`, 
 | [`llmquant-market-intelligence`](skills/llmquant-market-intelligence) | Reusable market utilities and signal views. | Macro view, market sentiment, event probability signals |
 | [`llmquant-investor-lenses`](skills/llmquant-investor-lenses) | Investor-style reasoning overlays using LLMQuant Data evidence. | Buffett, Graham, Munger, Lynch, Fisher, Burry, Ackman, Damodaran, and more |
 
-## Install For Claude Code
+## Install
 
-Install one category skill globally:
+### Recommended — `npx skills add`
 
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/LLMQuant/skills.git /tmp/llmquant-skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options ~/.claude/skills/
-```
-
-Install one category skill into the current project:
+One command, and it works across Claude Code, Codex, Cursor, Antigravity, Gemini, and other agents.
 
 ```bash
-mkdir -p .claude/skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options .claude/skills/
+# Pick skills interactively for the current agent
+npx skills add LLMQuant/skills
+
+# Install all category skills globally
+npx skills add LLMQuant/skills -g --all
+
+# Install specific skills
+npx skills add LLMQuant/skills -g --skill llmquant-options llmquant-equities
+
+# Target a specific agent
+npx skills add LLMQuant/skills -a codex
 ```
 
-Then ask Claude Code:
+Manage installed skills with `npx skills list`, `npx skills update`, and `npx skills remove`.
+
+Then ask the agent `What skills are available?`, or invoke one directly, e.g. `/llmquant-options`.
+
+![Selecting LLMQuant skills with npx skills add](assets/skills-add-screenshot.png)
+
+### Native plugin install
+
+The whole repository is also packaged as a single plugin that bundles every category skill, for agents with a native plugin system.
+
+**Claude Code** — add this repo as a plugin marketplace, then install the bundle:
 
 ```text
-What skills are available?
+/plugin marketplace add LLMQuant/skills
+/plugin install llmquant-skills@llmquant
 ```
 
-Or invoke directly:
-
-```text
-/llmquant-options
-```
-
-## Install For Codex
-
-Inside Codex, install a single category skill by GitHub directory URL:
+**Codex** — the repo ships `.codex-plugin/plugin.json`, so it is plugin-ready. To install today, use the CLI above (`npx skills add LLMQuant/skills -a codex`), or install a single category skill via the skill installer:
 
 ```text
 $skill-installer install https://github.com/LLMQuant/skills/tree/main/skills/llmquant-options
 ```
 
-Restart Codex after installation.
-
-For project-level use without the installer:
-
-```bash
-mkdir -p .agents/skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options .agents/skills/
-```
-
-Codex plugin metadata is in `.codex-plugin/plugin.json`.
-
-## Install For Claude.ai
-
-Claude.ai expects a ZIP containing the category skill folder:
-
-```text
-llmquant-options.zip
-└── llmquant-options/
-    ├── SKILL.md
-    ├── workflows/
-    ├── scripts/
-    └── assets/
-```
-
-Upload it in:
-
-```text
-Customize > Skills > + Create skill > Upload a skill
-```
-
-Do not zip only the files at the root. The ZIP root should contain the category folder.
-
-## Installer Scripts
-
-From a clone:
-
-```bash
-./install.sh llmquant-options claude
-./install.sh llmquant-etfs codex
-./install.sh llmquant-portfolio claude project
-```
-
-Wrappers:
-
-```bash
-./installers/install-claude.sh llmquant-options
-./installers/install-codex.sh llmquant-etfs
-```
-
-One-line install:
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/LLMQuant/skills/main/install.sh | bash -s llmquant-options claude
-curl -fsSL https://raw.githubusercontent.com/LLMQuant/skills/main/install.sh | bash -s llmquant-etfs codex
-```
-
-Set `LLMQUANT_SKILLS_REPO` if this repository is published under a different remote.
+**Cursor · Antigravity · other agents** — use the recommended CLI with the matching agent, e.g. `npx skills add LLMQuant/skills -a cursor` or `-a antigravity`.
 
 ## Use With Native LLMQuant Data
 

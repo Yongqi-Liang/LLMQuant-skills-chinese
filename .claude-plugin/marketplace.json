@@ -1,99 +1,19 @@
 {
-  "name": "llmquant-skills",
-  "display_name": "LLMQuant Skills",
+  "name": "llmquant",
+  "owner": {
+    "name": "LLMQuant",
+    "url": "https://llmquant.com"
+  },
   "description": "Finance research, trading, risk, and portfolio Agent Skills grounded in LLMQuant Data.",
-  "repository": "https://github.com/LLMQuant/skills",
   "version": "0.1.0",
-  "skills": [
+  "plugins": [
     {
-      "name": "llmquant-data",
-      "path": "skills/llmquant-data",
-      "description": "LLMQuant Data primitives for filings, 13F, macro, and source-grounded briefs."
-    },
-    {
-      "name": "llmquant-etfs",
-      "path": "skills/llmquant-etfs",
-      "description": "ETF holdings, overlap, concentration, and exposure workflows."
-    },
-    {
-      "name": "llmquant-market-intelligence",
-      "path": "skills/llmquant-market-intelligence",
-      "description": "Reusable macro, sentiment, and event probability utilities."
-    },
-    {
-      "name": "llmquant-options",
-      "path": "skills/llmquant-options",
-      "description": "Options, volatility, Greeks, unusual activity, and hedging workflows."
-    },
-    {
-      "name": "llmquant-equities",
-      "path": "skills/llmquant-equities",
-      "description": "Equity research, comparison, valuation, catalysts, and sell discipline."
-    },
-    {
-      "name": "llmquant-equity-derivatives",
-      "path": "skills/llmquant-equity-derivatives",
-      "description": "Single-stock derivative, convertible, warrant, and hybrid security workflows."
-    },
-    {
-      "name": "llmquant-commodities",
-      "path": "skills/llmquant-commodities",
-      "description": "Commodity spot, futures curve, inventory, and macro linkage workflows."
-    },
-    {
-      "name": "llmquant-crypto",
-      "path": "skills/llmquant-crypto",
-      "description": "Crypto regime, token research, perpetual funding, basis, and leverage workflows."
-    },
-    {
-      "name": "llmquant-prediction-markets",
-      "path": "skills/llmquant-prediction-markets",
-      "description": "Event odds, prediction-market contracts, probability gaps, and cross-venue review."
-    },
-    {
-      "name": "llmquant-macro",
-      "path": "skills/llmquant-macro",
-      "description": "Macro dashboards, central-bank previews, liquidity, and portfolio-impact workflows."
-    },
-    {
-      "name": "llmquant-credit",
-      "path": "skills/llmquant-credit",
-      "description": "Issuer credit, spread regime, high-yield stress, refinancing, and default-risk workflows."
-    },
-    {
-      "name": "llmquant-rates-fx",
-      "path": "skills/llmquant-rates-fx",
-      "description": "Rates, yield curves, central-bank divergence, FX carry, and currency-risk workflows."
-    },
-    {
-      "name": "llmquant-events",
-      "path": "skills/llmquant-events",
-      "description": "Earnings, M&A, regulatory, legal, policy, and catalyst event workflows."
-    },
-    {
-      "name": "llmquant-investor-lenses",
-      "path": "skills/llmquant-investor-lenses",
-      "description": "Investor-style reasoning overlays grounded in LLMQuant Data."
-    },
-    {
-      "name": "llmquant-strategies",
-      "path": "skills/llmquant-strategies",
-      "description": "Hedge-fund and PM strategy playbooks."
-    },
-    {
-      "name": "llmquant-risk",
-      "path": "skills/llmquant-risk",
-      "description": "Risk regime, hedging, panic scoring, and research quality checks."
-    },
-    {
-      "name": "llmquant-portfolio",
-      "path": "skills/llmquant-portfolio",
-      "description": "Profiles, theses, themes, watchlists, and alerts."
-    },
-    {
-      "name": "llmquant-portfolio-lab",
-      "path": "skills/llmquant-portfolio-lab",
-      "description": "Portfolio exposure maps, scenario states, and what-if simulations."
+      "name": "llmquant-skills",
+      "source": ".",
+      "description": "All LLMQuant category skills bundled as one plugin: equities, ETFs, options, equity-derivatives, commodities, crypto, prediction-markets, macro, credit, rates/FX, events, portfolio, portfolio-lab, risk, strategies, market-intelligence, investor-lenses, and data.",
+      "version": "0.1.0",
+      "homepage": "https://github.com/LLMQuant/skills",
+      "license": "MIT"
     }
   ]
 }

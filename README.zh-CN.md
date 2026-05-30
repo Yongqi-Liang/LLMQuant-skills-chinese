@@ -15,7 +15,13 @@
 
 </div>
 
-面向 Claude Code、Claude.ai、Cursor 和 Codex 的可复用 Agent Skills，统一以 **LLMQuant Data** 作为外部证据输入。
+面向 Claude Code、Codex、Cursor、Antigravity 等 Agent 的可复用 Agent Skills，统一以 **LLMQuant Data** 作为外部证据输入。
+
+```bash
+npx skills add LLMQuant/skills      # Claude Code · Codex · Cursor · Antigravity · OpenClaw · Hermes · …
+```
+
+> 第一次用?安装细节(全局 / 指定 / 原生插件)见 [安装](#安装)。
 
 这个 repo 是一个 skill catalog。用户安装/导入的基本单位是 `skills/llmquant-*` 下的一个大类 skill folder，不是孤立的 `SKILL.md`，也不是单个 workflow 文件。
 
@@ -31,12 +37,12 @@ skills/
 │   └── workflows/
 └── ...
 
-.claude-plugin/
-.cursor-plugin/
-.codex-plugin/
+.claude-plugin/     # Claude Code 插件 + marketplace 清单
+.codex-plugin/      # Codex 插件清单
+.cursor-plugin/     # Cursor 插件清单
+assets/
 README.md
 README.zh-CN.md
-install.sh
 ```
 
 每个大类的 `SKILL.md` 是 router：它索引 `workflows/*.md`，告诉 Agent 该加载哪个 workflow，并强制执行 LLMQuant Data 证据约定。
@@ -64,100 +70,50 @@ install.sh
 | [`llmquant-market-intelligence`](skills/llmquant-market-intelligence) | 可复用市场工具和信号视图。 | Macro view、market sentiment、event probability signals |
 | [`llmquant-investor-lenses`](skills/llmquant-investor-lenses) | 用 LLMQuant Data 做证据输入的投资大师推理覆盖层。 | Buffett、Graham、Munger、Lynch、Fisher、Burry、Ackman、Damodaran 等 |
 
-## Claude Code 安装
+## 安装
 
-全局安装一个大类 skill：
+### 推荐 —— `npx skills add`
 
-```bash
-mkdir -p ~/.claude/skills
-git clone https://github.com/LLMQuant/skills.git /tmp/llmquant-skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options ~/.claude/skills/
-```
-
-安装到当前项目：
+一条命令，适用于 Claude Code、Codex、Cursor、Antigravity、Gemini 等多种 Agent。
 
 ```bash
-mkdir -p .claude/skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options .claude/skills/
+# 为当前 Agent 交互式选择要安装的 skill
+npx skills add LLMQuant/skills
+
+# 全局安装全部大类 skill
+npx skills add LLMQuant/skills -g --all
+
+# 只安装指定的几个
+npx skills add LLMQuant/skills -g --skill llmquant-options llmquant-equities
+
+# 指定某个 Agent
+npx skills add LLMQuant/skills -a codex
 ```
 
-然后在 Claude Code 里问：
+用 `npx skills list`、`npx skills update`、`npx skills remove` 管理已安装的 skill。
+
+安装后在 Agent 里问 `What skills are available?`，或直接调用，例如 `/llmquant-options`。
+
+![用 npx skills add 选择 LLMQuant skills](assets/skills-add-screenshot.png)
+
+### 原生插件安装
+
+整个仓库同时被打包成**一个插件**，一次性 bundle 所有大类 skill，供带原生插件系统的 Agent 使用。
+
+**Claude Code** —— 把本仓库加为 plugin marketplace，再安装该 bundle：
 
 ```text
-What skills are available?
+/plugin marketplace add LLMQuant/skills
+/plugin install llmquant-skills@llmquant
 ```
 
-或直接调用：
-
-```text
-/llmquant-options
-```
-
-## Codex 安装
-
-在 Codex 中通过 GitHub directory URL 安装一个大类 skill：
+**Codex** —— 仓库内含 `.codex-plugin/plugin.json`，已 plugin-ready。当前安装请用上面的 CLI（`npx skills add LLMQuant/skills -a codex`），或用 skill installer 安装单个大类 skill：
 
 ```text
 $skill-installer install https://github.com/LLMQuant/skills/tree/main/skills/llmquant-options
 ```
 
-安装后重启 Codex。
-
-如果不用 installer，也可以项目级复制：
-
-```bash
-mkdir -p .agents/skills
-cp -R /tmp/llmquant-skills/skills/llmquant-options .agents/skills/
-```
-
-Codex 插件 metadata 位于 `.codex-plugin/plugin.json`。
-
-## Claude.ai 安装
-
-Claude.ai 需要上传包含大类 skill folder 的 ZIP：
-
-```text
-llmquant-options.zip
-└── llmquant-options/
-    ├── SKILL.md
-    ├── workflows/
-    ├── scripts/
-    └── assets/
-```
-
-上传位置：
-
-```text
-Customize > Skills > + Create skill > Upload a skill
-```
-
-不要把 `SKILL.md` 和 `workflows/` 直接压在 ZIP 根目录；ZIP 根目录应包含大类 folder。
-
-## 安装脚本
-
-在 clone 后使用：
-
-```bash
-./install.sh llmquant-options claude
-./install.sh llmquant-etfs codex
-./install.sh llmquant-portfolio claude project
-```
-
-包装脚本：
-
-```bash
-./installers/install-claude.sh llmquant-options
-./installers/install-codex.sh llmquant-etfs
-```
-
-一行安装：
-
-```bash
-curl -fsSL https://raw.githubusercontent.com/LLMQuant/skills/main/install.sh | bash -s llmquant-options claude
-curl -fsSL https://raw.githubusercontent.com/LLMQuant/skills/main/install.sh | bash -s llmquant-etfs codex
-```
-
-如果仓库发布到其他 remote，可设置 `LLMQUANT_SKILLS_REPO`。
+**Cursor · Antigravity · 其他 Agent** —— 用推荐的 CLI 加上对应 agent，例如 `npx skills add LLMQuant/skills -a cursor` 或 `-a antigravity`。
 
 ## 结合原生 LLMQuant Data 使用
 
