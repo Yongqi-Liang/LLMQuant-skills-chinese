@@ -1,6 +1,10 @@
 <div align="center">
 
-<img src="templates/llmquant-skills-logo.png" alt="LLMQuant Skills — Agent Skills powered by LLMQuant Data" width="760" />
+<img src="assets/llmquant-skills-logo.svg" alt="LLMQuant Skills" width="128" />
+
+<h1>LLMQuant Skills</h1>
+
+<p><strong>Reusable finance Agent Skills — grounded in <a href="https://github.com/LLMQuant/data-mcp">LLMQuant Data</a></strong></p>
 
 <p><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
 
@@ -9,21 +13,42 @@
   <a href="LICENSE"><img src="https://img.shields.io/badge/License-MIT-lightgrey.svg" alt="License: MIT" /></a>
   <a href="https://github.com/LLMQuant/data-mcp"><img src="https://img.shields.io/badge/native%20data-LLMQuant%20Data%20MCP-0B5FFF" alt="Native LLMQuant Data MCP" /></a>
   <a href="https://llmquantdata.com/agent"><img src="https://img.shields.io/badge/agent%20playground-open-8A5A44" alt="Open LLMQuant Agent Playground" /></a>
-  <a href="README.zh-CN.md"><img src="https://img.shields.io/badge/bilingual-zh%20%C2%B7%20en-708090" alt="Bilingual" /></a>
   <a href="https://github.com/LLMQuant/skills/commits"><img src="https://img.shields.io/github/last-commit/LLMQuant/skills" alt="Last commit" /></a>
 </p>
 
 </div>
 
-Reusable Agent Skills for Claude Code, Codex, Cursor, Antigravity, and other agents, grounded in **LLMQuant Data**.
-
 ```bash
 npx skills add LLMQuant/skills      # Claude Code · Codex · Cursor · Antigravity · OpenClaw · Hermes · …
 ```
 
-> New here? See [Install](#install) for global / specific installs and native plugin setup.
+> [!TIP]
+> 18 category skills — equities, options, macro, crypto, credit, portfolio, risk, and more — that route an agent to the right finance workflow and keep every claim grounded in LLMQuant Data.
 
-This repository is a skill catalog. The install/import unit is a category skill folder under `skills/llmquant-*`, not an isolated `SKILL.md` file and not a single workflow file.
+## Contents
+
+- [Contents](#contents)
+- [Overview](#overview)
+- [Category Skills](#category-skills)
+- [Install](#install)
+  - [Recommended: `npx skills add`](#recommended-npx-skills-add)
+  - [Native plugin install](#native-plugin-install)
+- [LLMQuant Data](#llmquant-data)
+- [Contributing](#contributing)
+- [License](#license)
+- [Star History](#star-history)
+
+## Overview
+
+<div align="center">
+  <img src="assets/llmquant-skills-header.png" alt="LLMQuant Skills — finance Agent Skills grounded in LLMQuant Data" width="820" />
+</div>
+
+
+This repository is a **skill catalog**. The install/import unit is a category folder under `skills/llmquant-*` — each one a router `SKILL.md` that indexes `workflows/*.md`, tells the agent which workflow to load, and enforces the LLMQuant Data evidence contract. It is not an isolated `SKILL.md` and not a single workflow file.
+
+<details>
+<summary><strong>Repository layout</strong></summary>
 
 ```text
 skills/
@@ -45,7 +70,7 @@ README.md
 README.zh-CN.md
 ```
 
-Each category `SKILL.md` is a router. It indexes workflows in `workflows/*.md`, tells the agent which workflow to load, and enforces the LLMQuant Data evidence contract.
+</details>
 
 ## Category Skills
 
@@ -72,9 +97,12 @@ Each category `SKILL.md` is a router. It indexes workflows in `workflows/*.md`, 
 
 ## Install
 
-### Recommended — `npx skills add`
+### Recommended: `npx skills add`
 
 One command, and it works across Claude Code, Codex, Cursor, Antigravity, Gemini, and other agents.
+
+> [!TIP]
+> Already inside an agent? Just run `npx skills add LLMQuant/skills` — it auto-detects the host and installs to the right place.
 
 ```bash
 # Pick skills interactively for the current agent
@@ -90,11 +118,11 @@ npx skills add LLMQuant/skills -g --skill llmquant-options llmquant-equities
 npx skills add LLMQuant/skills -a codex
 ```
 
-Manage installed skills with `npx skills list`, `npx skills update`, and `npx skills remove`.
+Manage installed skills with `npx skills list`, `npx skills update`, and `npx skills remove`. Then ask the agent `What skills are available?`, or invoke one directly, e.g. `/llmquant-options`.
 
-Then ask the agent `What skills are available?`, or invoke one directly, e.g. `/llmquant-options`.
-
-![Selecting LLMQuant skills with npx skills add](assets/skills-add-screenshot.png)
+<div align="center">
+  <img src="assets/skills-add-screenshot.png" alt="Selecting LLMQuant skills with npx skills add" width="720" />
+</div>
 
 ### Native plugin install
 
@@ -115,126 +143,64 @@ $skill-installer install https://github.com/LLMQuant/skills/tree/main/skills/llm
 
 **Cursor · Antigravity · other agents** — use the recommended CLI with the matching agent, e.g. `npx skills add LLMQuant/skills -a cursor` or `-a antigravity`.
 
-## Use With Native LLMQuant Data
+## LLMQuant Data
 
-LLMQuant Skills are designed to work best with the native **LLMQuant Data MCP** server: [`@llmquant/data-mcp`](https://github.com/LLMQuant/data-mcp). The MCP server connects Claude Code, Cursor, Codex CLI, Gemini CLI, and other MCP-enabled agents to LLMQuant Data through a single data layer.
+These skills are the workflow layer for **[LLMQuant Data](https://github.com/LLMQuant/data-mcp)** — one MCP server that feeds prices, filings, 13F, macro, ETF holdings, crypto, and more to your agents. **Configure once, and every agent in your stack gets the data.**
 
-The intended setup is:
+<div align="center">
+  <img src="assets/ecosystem.png" alt="LLMQuant Data, everywhere your agent runs — Claude Code, Cursor, Codex, Gemini, and more" width="800" />
+</div>
 
-1. Connect your agent to native LLMQuant Data.
-2. Install one or more category skills from this repository.
-3. Ask for an investment, trading, risk, macro, or portfolio workflow.
-4. The skill selects the right workflow and describes the required data capabilities in natural language.
-5. The agent routes those needs to the currently available LLMQuant Data MCP tools and reports dates, coverage, and missing inputs.
+**Set it up the AI-native way** — paste this to your agent:
 
-![LLMQuant Data MCP and Agent Skills available across agent harnesses](templates/ecosystem.png)
+```text
+Install the LLMQuant data-mcp server in this environment by following https://github.com/LLMQuant/data-mcp
+```
 
-Get an API key from [llmquantdata.com](https://llmquantdata.com), then configure the MCP server for your client.
-
-### Claude Code
+Or add it by hand:
 
 ```bash
-claude mcp add llmquant-data \
-  -e LLMQUANT_API_KEY=your_api_key \
-  -- npx -y @llmquant/data-mcp
+claude mcp add llmquant-data -e LLMQUANT_API_KEY=your_api_key -- npx -y @llmquant/data-mcp
 ```
 
-### Codex CLI
+> [!NOTE]
+> Grab an API key and the full multi-agent setup at **[docs.llmquantdata.com](https://docs.llmquantdata.com)** and **[`LLMQuant/data-mcp`](https://github.com/LLMQuant/data-mcp)**.
 
-```bash
-codex mcp add llmquant-data \
-  --env LLMQUANT_API_KEY=your_api_key \
-  -- npx -y @llmquant/data-mcp
-```
+Skills describe the data they need in natural language and let the agent route to whatever LLMQuant Data exposes, so coverage can grow without editing any skill. Without `llmquant-data` connected, skills still run as reusable workflows — the agent asks for user-provided data and clearly labels anything missing. The full evidence contract is in [CONTRIBUTING.md](CONTRIBUTING.md).
 
-### Cursor
+<div align="center">
+  <a href="https://llmquantdata.com/agent"><img src="assets/playground.png" alt="LLMQuant Agent Playground — Data MCP and Skills enabled" width="800" /></a>
+  <br/>
+  <strong><a href="https://llmquantdata.com/agent">Open the LLMQuant Agent Playground →</a></strong>
+</div>
 
-Add this to `.cursor/mcp.json` in a project, or `~/.cursor/mcp.json` globally:
-
-```json
-{
-  "mcpServers": {
-    "llmquant-data": {
-      "command": "npx",
-      "args": ["-y", "@llmquant/data-mcp"],
-      "env": {
-        "LLMQUANT_API_KEY": "your_api_key"
-      }
-    }
-  }
-}
-```
-
-### Other MCP Clients
-
-Any client that supports stdio MCP servers can use the same command:
-
-```json
-{
-  "mcpServers": {
-    "llmquant-data": {
-      "command": "npx",
-      "args": ["-y", "@llmquant/data-mcp"],
-      "env": {
-        "LLMQUANT_API_KEY": "your_api_key"
-      }
-    }
-  }
-}
-```
-
-Native LLMQuant Data currently exposes data capabilities across quant wiki knowledge, research papers, crypto prices, U.S. equity prices, macro indicators, SEC 10-K/10-Q filings, 13F smart-money holdings, and ETF holdings. More data products such as news, company fundamentals, earnings transcripts, options, commodities, prediction markets, credit, rates, FX, and portfolio data can be added behind the same skill contract over time.
-
-![LLMQuant agent playground with Data MCP and Skills enabled](templates/playground.png)
-
-<p align="center">
-  <strong><a href="https://llmquantdata.com/agent">Open LLMQuant Agent Playground</a></strong>
-</p>
-
-These skills intentionally avoid binding workflow frontmatter to exact MCP tool names. Tool names can evolve, while the skill contract stays stable: describe the financial data needed, let the agent route to LLMQuant Data, and make the output disclose the evidence actually retrieved.
-
-If `llmquant-data` is not connected, the skills still work as reusable research workflows. In that mode, the agent should ask for user-provided data, continue only with retrieved evidence, and clearly label missing native LLMQuant Data inputs.
-
-## LLMQuant Data Contract
-
-Every category skill treats **LLMQuant Data** as the input data source for external evidence:
-
-- Use LLMQuant Data for prices, filings, 13F, macro, ETF holdings, crypto, prediction markets, rates, FX, credit, research, options, sentiment, profiles, watchlists, alerts, commodities, events, portfolio positions, and risk models.
-- Describe data needs as natural-language capabilities in skills and workflows. Avoid binding frontmatter to exact MCP tool names so the agent can route to the currently available data MCP.
-- State which data capabilities were used and cite returned dates, filing periods, observation dates, and stale-data notices.
-- Do not invent missing values. If current coverage is unavailable, report the LLMQuant Data inputs needed by the workflow and continue only with retrieved evidence.
-- Keep reasoning separate from evidence: skills define the analytical frame; LLMQuant Data supplies facts.
-
-Some workflows define target LLMQuant Data capabilities that may be added later, such as option chains, commodity futures curves, prediction-market order books, credit spreads, FX forwards, portfolio positions, and portfolio scenario simulations. Those workflows should still exist as product-ready skills, with missing inputs clearly named when data is not yet returned.
+<details>
+<summary><strong>▶ Watch the playground demo</strong></summary>
+<br/>
+<div align="center">
+  <img src="assets/llmquant-data-agentplayground-demo.gif" alt="LLMQuant Agent Playground demo — Data MCP and Skills in action" width="800" />
+</div>
+</details>
 
 ## Contributing
 
-Add or update workflows inside the relevant category:
+Add or update workflows inside the relevant category (`skills/llmquant-<category>/` → `SKILL.md` + `workflows/` + `scripts/` + `assets/`):
 
-```text
-skills/llmquant-<category>/
-├── SKILL.md
-├── workflows/<workflow-name>.md
-├── scripts/
-└── assets/
-```
+- Category folders must be named `llmquant-*`, and `SKILL.md` is the router that indexes every workflow.
+- Workflow files hold the repeatable procedure, output format, data contract, and guardrails.
+- Describe data needs as natural-language capabilities, not exact MCP tool names.
+- Update this README when a category or major workflow is added, removed, or renamed.
 
-Requirements:
+See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contract and quality bar.
 
-- Category folders must be named `llmquant-*`.
-- `SKILL.md` is the router and must index every workflow in the category.
-- Workflow files contain the actual repeatable procedure, output format, data contract, and guardrails.
-- External evidence should come from LLMQuant Data when available. If no data MCP is available, ask for user-provided data and clearly mark the limitation.
-- Data requirements should be described as natural-language capabilities instead of exact MCP tool names in frontmatter.
-- Update this README when adding, removing, or renaming a category or major workflow.
+## License
 
-MIT License.
-
-## Developed by
+MIT — see [LICENSE](LICENSE). Listing a project here does not change the license of any linked code or artifact.
 
 <div align="center">
-  <img src="templates/llmquant-skills-logo.png" alt="LLMQuant" width="220" />
   <br/>
+  <img src="assets/llmquant-logo.svg" alt="LLMQuant" width="64" />
+  <br/><br/>
   <strong><a href="https://llmquant.com">LLMQuant</a></strong>
   <br/>
   <sub>Open-source community for AI, LLMs, and quantitative finance.</sub>
@@ -243,8 +209,6 @@ MIT License.
   <a href="https://github.com/LLMQuant">GitHub</a> ·
   <a href="https://linkedin.com/company/llmquant">LinkedIn</a>
 </div>
-
-The maintainer team reviews new entries and category changes.
 
 ## Star History
 
