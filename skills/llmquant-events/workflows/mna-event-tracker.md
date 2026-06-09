@@ -1,42 +1,42 @@
-# M&A Event Tracker
+# 并购事件跟踪器
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks about merger arbitrage, acquisition probability, deal spread, approvals, financing risk, shareholder votes, or break risk.
+当用户询问并购套利、收购概率、交易价差、审批、融资风险、股东投票或交割破裂风险时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- transaction announcement, deal terms, consideration type, price, spread, expected close, and termination provisions.
-- filings, proxy statements, merger agreements, financing disclosures, and shareholder vote dates.
-- target and acquirer price history, volatility, options, borrow, sector peers, and market context.
-- regulatory approval milestones, antitrust jurisdictions, legal challenges, and news updates when available.
+必需：
+- 交易公告、交易条款、对价类型、价格、价差、预期交割日期及终止条款。
+- 报告、委托声明书、合并协议、融资披露及股东投票日期。
+- 目标公司和收购方的价格历史、波动率、期权、借贷成本、行业同业及市场背景。
+- 监管审批里程碑、反垄断司法管辖区、法律挑战及新闻更新（可用时）。
 
-Freshness:
-- Report deal announcement date, filing date, spread date, vote date, regulatory milestone date, and stale-data notices.
+时效性：
+- 报告交易公告日期、报告日期、价差日期、投票日期、监管里程碑日期及过期数据提示。
 
-Fallback:
-- If definitive agreement or spread data is unavailable, provide a deal timeline and missing-input list without probability scoring.
+回退规则：
+- 若最终协议或价差数据不可用，提供交易时间线和缺失输入清单，不进行概率评分。
 
-## Workflow
+## 工作流
 
-1. Identify target, acquirer, consideration, expected close date, and investor objective.
-2. Build the deal timeline and unresolved conditions.
-3. Calculate spread and implied return when current prices and terms are available.
-4. Assess break risk: financing, antitrust, shareholder, legal, macro, and acquirer-stock risk.
-5. Produce milestone tracker, probability range, and next evidence to monitor.
+1. 识别目标公司、收购方、对价、预期交割日期及投资者目标。
+2. 构建交易时间线和未解决条件。
+3. 在当前价格和条款可用时，计算价差和隐含收益率。
+4. 评估交割破裂风险：融资、反垄断、股东、法律、宏观及收购方股价风险。
+5. 生成里程碑跟踪器、概率区间及下一个待监控证据。
 
-## Output Format
+## 输出格式
 
-1. **Deal Snapshot**
-2. **Spread / Return**
-3. **Milestones**
-4. **Break-Risk Map**
-5. **Probability / Monitors**
-6. **Data Used**
+1. **交易快照**
+2. **价差 / 收益率**
+3. **里程碑**
+4. **交割破裂风险图**
+5. **概率 / 监控事项**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not compute deal spread without current price and consideration terms.
-- Do not call a deal likely without addressing approvals and financing.
-- Do not invent legal or regulatory deadlines.
+- 不得在当前价格和条款缺失的情况下计算交易价差。
+- 在未讨论审批和融资的情况下不得断言交易大概率完成。
+- 不得编造法律或监管截止日期。

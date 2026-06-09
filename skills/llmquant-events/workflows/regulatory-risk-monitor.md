@@ -1,42 +1,42 @@
-# Regulatory Risk Monitor
+# 监管风险监控
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks about regulatory, legal, antitrust, FDA, policy, geopolitical, or compliance risk affecting a company, sector, asset, or event.
+当用户询问影响公司、行业、资产或事件的监管、法律、反垄断、FDA、政策、地缘政治或合规风险时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- filings, risk factors, legal proceedings, company disclosures, regulatory calendars, and policy events.
-- price history, volatility, options, sector peers, news, and sentiment around the affected asset.
-- historical event analogs, regulatory decisions, and enforcement history when available.
-- prediction-market or probability evidence when a contract-defined regulatory outcome exists.
+必需：
+- 报告、风险因素、法律诉讼、公司披露、监管日历及政策事件。
+- 受影响资产的价格历史、波动率、期权、行业同业、新闻及情绪。
+- 历史事件类比、监管决定及执法历史（可用时）。
+- 当存在合约定义的监管结果时，获取预测市场或概率证据。
 
-Freshness:
-- Report filing date, event date, regulatory calendar date, news timestamp, market price date, and stale-data notices.
+时效性：
+- 报告报告日期、事件日期、监管日历日期、新闻时间戳、市场价格日期及过期数据提示。
 
-Fallback:
-- If regulatory docket or event calendar data is unavailable, frame the output as a risk map and list missing evidence.
+回退规则：
+- 若监管档案或事件日历数据不可用，将输出框架为风险图并列出缺失证据。
 
-## Workflow
+## 工作流
 
-1. Define the regulator, jurisdiction, asset, event, and decision window.
-2. Summarize the rule, approval, lawsuit, investigation, or policy issue in plain language.
-3. Link risk to revenue, cost, valuation, capital structure, supply chain, or license-to-operate exposure.
-4. Compare market pricing, options, peers, and historical analogs where available.
-5. Produce a monitor with trigger events, probability range, and scenario implications.
+1. 确定监管机构、司法管辖区、资产、事件及决策窗口。
+2. 用通俗语言概述规则、审批、诉讼、调查或政策问题。
+3. 将风险与收入、成本、估值、资本结构、供应链或经营许可敞口关联。
+4. 在可用时比较市场价格、期权、同业及历史类比。
+5. 生成监控报告，包含触发事件、概率区间及情景影响。
 
-## Output Format
+## 输出格式
 
-1. **Risk Summary**
-2. **Exposure Map**
-3. **Evidence Timeline**
-4. **Market Pricing**
-5. **Scenarios / Triggers**
-6. **Data Used**
+1. **风险摘要**
+2. **敞口图**
+3. **证据时间线**
+4. **市场定价**
+5. **情景 / 触发条件**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not give legal advice.
-- Do not infer regulatory outcomes from political preference.
-- Do not invent docket entries, agency statements, or decision dates.
+- 不得提供法律建议。
+- 不得从政治偏好推断监管结果。
+- 不得编造档案记录、机构声明或决定日期。

@@ -1,42 +1,42 @@
-# Earnings Event Brief
+# 财报事件简报
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks for an earnings preview, post-earnings read, implied move check, setup, or catalyst risk for a company.
+当用户要求对某公司进行财报预览、财报后解读、隐含波动幅度检查、布局分析或催化剂风险评估时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- earnings date, company profile, filings, prior results, segment context, and management guidance.
-- price history, volume, realized volatility, drawdowns, sector and peer returns.
-- estimates, revisions, surprises, margins, revenue drivers, and valuation context when available.
-- options-implied move, implied volatility, skew, open interest, and event-window history when available.
+必需：
+- 财报日期、公司概况、报告、历史业绩、业务分部背景及管理层指引。
+- 价格历史、成交量、实现波动率、回撤、行业及同业收益率。
+- 预测、修正、惊喜、利润率、收入驱动因素及估值背景（可用时）。
+- 期权隐含波动幅度、隐含波动率、偏斜、持仓量及事件窗口历史（可用时）。
 
-Freshness:
-- Report earnings date, estimate timestamp, option quote time, filing date, and price window.
+时效性：
+- 报告财报日期、预测时间戳、期权报价时间、报告日期及价格窗口。
 
-Fallback:
-- If estimates or options are unavailable, produce a fundamentals-and-price setup only and list missing inputs.
+回退规则：
+- 若预测或期权数据不可用，仅生成基本面与价格布局分析并列出缺失输入。
 
-## Workflow
+## 工作流
 
-1. Define the company, reporting period, event date, and investor horizon.
-2. Summarize expectations: revenue, margins, guidance, key metrics, and sell-side revision trend.
-3. Analyze setup: price trend, valuation, positioning, sentiment, peers, and options-implied move.
-4. Build upside, base, and downside scenarios with evidence thresholds.
-5. Translate the setup into watch items and post-event interpretation rules.
+1. 确定公司、报告期间、事件日期及投资者时间范围。
+2. 概述预期：收入、利润率、指引、关键指标及卖方修正趋势。
+3. 分析布局：价格趋势、估值、仓位、情绪、同业及期权隐含波动幅度。
+4. 构建上行、基准及 downside 情景，附带证据阈值。
+5. 将布局转化为关注事项和财报后解读规则。
 
-## Output Format
+## 输出格式
 
-1. **Event Setup**
-2. **Expectations**
-3. **Options / Positioning**
-4. **Scenario Table**
-5. **Post-Event Checklist**
-6. **Data Used**
+1. **事件布局**
+2. **预期**
+3. **期权 / 仓位**
+4. **情景表**
+5. **财报后检查清单**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not invent estimates or guidance.
-- Do not equate implied move with probability of direction.
-- Separate pre-event setup from post-event conclusion.
+- 不得编造预测或指引。
+- 不得将隐含波动幅度等同于方向概率。
+- 将财报前布局与财报后结论分开。
