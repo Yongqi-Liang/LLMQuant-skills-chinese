@@ -1,39 +1,39 @@
 ---
 name: llmquant-equities
-description: Router skill for LLMQuant equities workflows. Use when the user needs stock analysis, equity comparison, research memos, merger-arb memos, or sell/take-profit work.
+description: LLMQuant 股票工作流的路由 Skill。当用户需要股票分析、股票比较、研究备忘录、并购套利备忘录或卖出/止盈分析时使用。
 input_data_source: LLMQuant Data
 category: equities
 ---
 
-# LLMQuant Equities
+# LLMQuant 股票
 
-This category routes equity research, comparison, valuation, catalyst, and sell-discipline workflows.
+本类别路由股票研究、比较、估值、催化剂及卖出纪律工作流。
 
-## Routing Rules
+## 路由规则
 
-1. Identify ticker(s), investment horizon, benchmark, and requested deliverable.
-2. Select the closest workflow below.
-3. Open only the selected workflow and needed local resources.
-4. Use LLMQuant Data for filings, prices, fundamentals, ownership, macro, estimates, and events.
-5. Report data periods, filing dates, observation dates, stale notices, and missing future inputs.
+1. 识别 ticker、投资时间范围、基准及期望交付物。
+2. 从下方索引中选择最匹配的工作流。
+3. 仅打开选中的工作流及所需本地资源。
+4. 使用 LLMQuant Data 获取报告、价格、基本面、所有权、宏观、预测及事件数据。
+5. 报告数据期间、报告日期、观察日期、过期提示及缺失的未来输入。
 
-## Workflow Index
+## 工作流索引
 
-| User intent | Workflow |
+| 用户意图 | 工作流 |
 |---|---|
-| Score a stock across fundamentals, valuation, technicals, sentiment, and flow. | [`workflows/five-lens-stock-analysis.md`](workflows/five-lens-stock-analysis.md) |
-| Compare 2-5 stocks or ETFs side by side. | [`workflows/equity-compare.md`](workflows/equity-compare.md) |
-| Build a full equity research memo. | [`workflows/equity-research-memo.md`](workflows/equity-research-memo.md) |
-| Build a catalyst-bound merger-arbitrage memo. | [`workflows/merger-arb-memo.md`](workflows/merger-arb-memo.md) |
-| Analyze hold versus systematic profit-taking rules. | [`workflows/take-profit-lab.md`](workflows/take-profit-lab.md) |
+| 从基本面、估值、技术面、情绪及资金流五个维度对股票评分。 | [`workflows/five-lens-stock-analysis.md`](workflows/five-lens-stock-analysis.md) |
+| 并排比较 2-5 只股票或 ETF。 | [`workflows/equity-compare.md`](workflows/equity-compare.md) |
+| 构建完整的股票研究备忘录。 | [`workflows/equity-research-memo.md`](workflows/equity-research-memo.md) |
+| 构建以催化剂为锚的并购套利备忘录。 | [`workflows/merger-arb-memo.md`](workflows/merger-arb-memo.md) |
+| 分析持有与系统化止盈规则。 | [`workflows/take-profit-lab.md`](workflows/take-profit-lab.md) |
 
-## LLMQuant Data Contract
+## LLMQuant Data 契约
 
-Prefer LLMQuant Data when available. The workflows may need these data capabilities:
-- Retrieve equity prices, returns, market cap, volume, technical indicators, and realized volatility.
-- Retrieve company fundamentals, estimates, valuation multiples, peer context, and corporate events.
-- Read SEC filings and specific filing sections for business, MD&A, risks, and catalysts.
-- Retrieve institutional ownership, top holders, manager concentration, and 13F sponsorship context.
+优先使用 LLMQuant Data。工作流可能需要以下数据能力：
+- 获取股票价格、收益率、市值、成交量、技术指标及实现波动率。
+- 获取公司基本面、预测、估值倍数、同业背景及公司事件。
+- 读取 SEC 报告及具体报告章节，包括业务、MD&A、风险及催化剂。
+- 获取机构所有权、顶级持有人、管理人集中度及 13F 发起人背景。
 
-Fallback:
-- If fundamentals, estimates, or event feeds are unavailable, name the missing input and continue only with retrieved or user-provided evidence.
+回退规则：
+- 若基本面、预测或事件数据不可用，指明缺失输入，并仅使用已获取或用户提供的证据继续。
