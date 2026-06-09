@@ -1,58 +1,58 @@
 ---
 name: Duan Yongping Seller Framework
-description: Apply a seller-only, quality-business options framework using sell puts, covered calls, and panic-buy context from LLMQuant Data.
+description: 应用仅限卖方的优质业务期权框架，使用 LLMQuant Data 的卖出看跌、备兑看涨及恐慌买入背景。
 input_data_source: LLMQuant Data
 school: value-investing
 ---
 
-# Duan Yongping Seller Framework
+# 段永平卖方框架
 
-## Purpose
+## 目的
 
-Frame a quality-stock position through three actions: sell put at a willing-buy price, covered call for yield on owned shares, or wait for broad panic before buying stock.
+通过三种操作构建优质股票仓位：在愿意买入的价格卖出看跌期权、对已持股卖出备兑看涨期权、或在广泛恐慌时买入股票。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for underlying quality, option chains, IV, VIX, and strategy construction.
+使用 **LLMQuant Data** 获取标的质量、期权链、IV、VIX 及策略构建。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- equity market snapshot data and company fundamentals data for price, quality, and balance-sheet sanity.
-- option chain data and options strategy construction data for sell-put and covered-call candidates.
-- implied-volatility snapshot data for premium attractiveness.
-- VIX snapshot data for broad panic context.
+必需 LLMQuant Data 输入：
+- 股票市场快照数据及公司基本面数据：价格、质量及资产负债表健全性。
+- 期权链数据及期权策略构建数据：卖出看跌和备兑看涨候选。
+- 隐含波动率快照数据：权利金吸引力。
+- VIX 快照数据：广泛恐慌背景。
 
-## Framework
+## 框架
 
-Only consider:
-- Sell put at a price where the investor is genuinely willing to own the stock.
-- Covered call against existing shares when the user accepts assignment risk.
-- Stock purchase during extreme broad panic if business quality is intact.
+仅考虑：
+- 在投资者真正愿意持股的价格卖出看跌期权。
+- 在用户接受被行权风险时对已持股卖出备兑看涨期权。
+- 在业务质量完好时，因极端广泛恐慌买入股票。
 
-Avoid:
-- Buying options as lottery tickets.
-- Selling puts on businesses the user does not want to own.
-- Selling calls when losing the shares would violate the thesis.
+避免：
+- 将买入期权当作彩票。
+- 对用户不想持有的业务卖出看跌期权。
+- 当失去股票会违反投资论点时卖出看涨期权。
 
-## Workflow
+## 工作流
 
-1. Confirm whether the user owns shares, has a willing-buy price, or is evaluating panic context.
-2. Check business quality and current price.
-3. Pull option chain for 25-50 DTE by default unless user specifies.
-4. Build sell-put and covered-call panels with yield, cost basis, assignment result, and risk.
-5. Use VIX tier to frame patience versus panic opportunity.
+1. 确认用户是否持股、有愿意买入的价格，或在评估恐慌背景。
+2. 检查业务质量和当前价格。
+3. 默认拉取 25-50 天到期的期权链，除非用户指定。
+4. 构建卖出看跌和备兑看涨面板，包含收益率、成本基础、行权结果及风险。
+5. 使用 VIX 分级框架定耐心等待与恐慌机会。
 
-## Output Format
+## 输出格式
 
-1. **Seller Verdict**: sell put, covered call, buy stock on panic, or wait.
-2. **Sell Put Panel**: strike, premium, annualized yield, assigned cost basis, delta.
-3. **Covered Call Panel**: strike, premium, yield, upside cap, called-away return.
-4. **Panic Context**: VIX, tier, action.
-5. **Data Used**.
+1. **卖方结论**：卖出看跌、备兑看涨、恐慌买入股票或等待。
+2. **卖出看跌面板**：行权价、权利金、年化收益率、行权成本基础、delta。
+3. **备兑看涨面板**：行权价、权利金、收益率、上行上限、被叫走回报。
+4. **恐慌背景**：VIX、级别、操作。
+5. **所用数据**。
 
-## Guardrails
+## 防护栏
 
-- Do not present premium as free income; assignment and opportunity cost are real.
-- Do not use this framework for low-quality or unprofitable businesses without warning.
-- Do not recommend uncovered calls.
+- 不得将权利金呈现为免费收入；行权和机会成本是真实的。
+- 对低质量或不盈利业务使用此框架时须发出警告。
+- 不得推荐裸卖出看涨期权。

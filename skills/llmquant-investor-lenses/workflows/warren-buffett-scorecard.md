@@ -1,59 +1,59 @@
 ---
 name: Warren Buffett Scorecard
-description: Apply a Buffett-style business, moat, management, and valuation scorecard using LLMQuant Data.
+description: 使用 LLMQuant Data 应用巴菲特式业务、护城河、管理层及估值评分卡。
 input_data_source: LLMQuant Data
 school: value-investing
 ---
 
-# Warren Buffett Scorecard
+# 巴菲特评分卡
 
-## Purpose
+## 目的
 
-Score whether a business is understandable, durable, well-managed, and available at a sensible price relative to long-term alternatives.
+评估一家业务是否可理解、持久、管理良好，且以相对于长期替代品的合理价格可获得。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for company data, filings, valuation history, and rate context. Do not use anecdotes or reputation as substitutes for evidence.
+使用 **LLMQuant Data** 获取公司数据、报告、估值历史及利率背景。不得以轶事或声誉替代证据。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- equity market snapshot data for size, sector, market, liquidity, and price.
-- company fundamentals data for margins, ROE, ROIC, debt, FCF, dividends, buybacks, and growth.
-- valuation multiple data and historical valuation data for current and historical valuation.
-- SEC filing discovery and SEC filing section retrieval for business description, risks, MD&A, and capital allocation.
-- macro indicator snapshot data for 10-year Treasury yield or relevant discount-rate proxy.
+必需 LLMQuant Data 输入：
+- 股票市场快照数据：规模、行业、市场、流动性及价格。
+- 公司基本面数据：利润率、ROE、ROIC、债务、FCF、分红、回购及增长。
+- 估值倍数数据及历史估值数据：当前和历史估值。
+- SEC 报告发现及 SEC 报告章节检索：业务描述、风险、MD&A 及资本配置。
+- 宏观指标快照数据：10 年期国债收益率或相关折现率代理。
 
-## Scorecard
+## 评分卡
 
-Score 0-100:
-- Business/circle of competence: simplicity, predictability, cyclicality, regulatory exposure.
-- Moat: pricing power, margins, returns on capital, scale, brand, switching cost.
-- Management: capital allocation, dilution, buybacks, dividends, leverage discipline.
-- Valuation: FCF yield versus rates, multiples, historical band, margin of safety.
+评分 0-100：
+- 业务/能力圈：简单性、可预测性、周期性、监管敞口。
+- 护城河：定价权、利润率、资本回报、规模、品牌、转换成本。
+- 管理层：资本配置、稀释、回购、分红、杠杆纪律。
+- 估值：FCF 收益率与利率比较、倍数、历史区间、安全边际。
 
-Verdict:
-- 75-100: Holdable at the right price.
-- 55-74: Watchlist; quality or valuation gap remains.
-- Below 55: Avoid for Buffett-style ownership.
+结论：
+- 75-100：在合适价格下可持有。
+- 55-74：关注列表；质量或估值差距尚存。
+- 55 以下：避免巴菲特式持有。
 
-## Workflow
+## 工作流
 
-1. Pull facts first: fundamentals, filings, valuation, rates.
-2. Score each lens and show evidence.
-3. Penalize complexity, leverage, poor FCF conversion, and valuation without margin of safety.
-4. Provide a hold/buy/watch/avoid verdict only after the scorecard.
+1. 先拉取事实：基本面、报告、估值、利率。
+2. 对每个维度评分并展示证据。
+3. 惩罚复杂性、杠杆、低 FCF 转化率及无安全边际的估值。
+4. 仅在评分卡完成后提供持有/买入/关注/回避结论。
 
-## Output Format
+## 输出格式
 
-1. **Verdict**: holdable, watchable, or avoid.
-2. **Scorecard Table**: business, moat, management, valuation.
-3. **Evidence**: filings and metrics supporting each score.
-4. **Price Discipline**: fair-value range or required margin of safety.
-5. **Data Used**.
+1. **结论**：可持有、可关注或回避。
+2. **评分卡表**：业务、护城河、管理层、估值。
+3. **证据**：支持每个评分的报告和指标。
+4. **价格纪律**：合理价值区间或所需安全边际。
+5. **所用数据**。
 
-## Guardrails
+## 防护栏
 
-- Do not imply Buffett would buy the stock; state "Buffett-style scorecard."
-- Do not overrule weak valuation with a good story.
-- Do not score moat from brand claims alone.
+- 不得暗示巴菲特会买入该股票；应表述为"巴菲特式评分卡"。
+- 不得用好故事推翻弱估值。
+- 不得仅凭品牌声明评估护城河。

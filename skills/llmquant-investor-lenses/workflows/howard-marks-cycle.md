@@ -1,59 +1,59 @@
 ---
 name: Howard Marks Cycle
-description: Estimate market cycle position and offense-versus-defense posture from sentiment, volatility, valuation, and credit data using LLMQuant Data.
+description: 使用 LLMQuant Data 的情绪、波动率、估值及信用数据估计市场周期位置和进攻/防守姿态。
 input_data_source: LLMQuant Data
 school: cycle-risk
 ---
 
-# Howard Marks Cycle
+# Howard Marks 周期
 
-## Purpose
+## 目的
 
-Replace market forecasting with cycle-position awareness: play offense when fear and value are favorable, defense when optimism and valuation are stretched.
+用周期位置意识替代市场预测：当恐惧和价值有利时进攻，当乐观和估值拉伸时防守。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for volatility, sentiment, valuation, credit, rates, and macro context.
+使用 **LLMQuant Data** 获取波动率、情绪、估值、信用、利率及宏观背景。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- market sentiment snapshot data, VIX snapshot data, and market put/call ratio data for fear/complacency.
-- implied-volatility snapshot data for SPY or index-proxy IV rank.
-- valuation multiple data for market valuation percentiles.
-- macro indicator snapshot data and macro indicator history for credit spreads, rates, liquidity, and financial conditions.
+必需 LLMQuant Data 输入：
+- 市场情绪快照数据、VIX 快照数据及市场看跌/看涨比率数据：恐惧/自满。
+- 隐含波动率快照数据：SPY 或指数代理 IV 排名。
+- 估值倍数数据：市场估值百分位。
+- 宏观指标快照数据及宏观指标历史：信用利差、利率、流动性及金融条件。
 
-## Cycle Score
+## 周期评分
 
-Map each component to 0-100:
-- 0 means panic, attractive forward risk/reward, offense favored.
-- 100 means euphoria, poor forward risk/reward, defense favored.
+将每个成分映射为 0-100：
+- 0 表示恐慌，前瞻风险/回报有吸引力，偏好进攻。
+- 100 表示狂热，前瞻风险/回报差，偏好防守。
 
-Posture bands:
-- 0-24: hard offense.
-- 25-39: offense.
-- 40-59: neutral.
-- 60-74: defense.
-- 75-100: hard defense.
+姿态区间：
+- 0-24：强力进攻。
+- 25-39：进攻。
+- 40-59：中性。
+- 60-74：防守。
+- 75-100：强力防守。
 
-## Workflow
+## 工作流
 
-1. Pull sentiment, volatility, valuation, and credit inputs.
-2. Normalize each input to a cycle component with historical percentile.
-3. Compute weighted cycle score and confidence.
-4. Explain disagreements between components.
-5. Translate posture into sizing, cash, hedging, and risk appetite.
+1. 拉取情绪、波动率、估值及信用输入。
+2. 将每个输入标准化为带历史百分位的周期成分。
+3. 计算加权周期评分及置信度。
+4. 解释成分之间的分歧。
+5. 将姿态转化为仓位、现金、对冲及风险偏好。
 
-## Output Format
+## 输出格式
 
-1. **Cycle Score**: 0-100, posture, confidence.
-2. **Component Table**: value, percentile, cycle contribution.
-3. **Offense/Defense Plan**: add risk, hold, trim, hedge, or wait.
-4. **Contrary Evidence**: what argues against the score.
-5. **Data Used**.
+1. **周期评分**：0-100、姿态、置信度。
+2. **成分表**：数值、百分位、周期贡献。
+3. **进攻/防守计划**：加风险、持有、减仓、对冲或等待。
+4. **反面证据**：什么在反对该评分。
+5. **所用数据**。
 
-## Guardrails
+## 防护栏
 
-- Do not use cycle score as a market-timing guarantee.
-- Do not force offense or defense when components conflict.
-- Use percentile windows consistently and report them.
+- 不得将周期评分当作市场择时保证。
+- 当成分冲突时不得强行进攻或防守。
+- 一致使用百分位窗口并报告。

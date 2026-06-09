@@ -1,61 +1,61 @@
 ---
 name: David Tepper Panic Signal
-description: Detect rare panic-buy conditions using VIX, per-ticker fear, quality filters, and liquidity context from LLMQuant Data.
+description: 使用 LLMQuant Data 的 VIX、个股恐慌、质量筛选及流动性背景检测罕见的恐慌买入条件。
 input_data_source: LLMQuant Data
 school: macro-momentum
 ---
 
-# David Tepper Panic Signal
+# David Tepper 恐慌信号
 
-## Purpose
+## 目的
 
-Identify whether current conditions resemble a high-conviction panic-buy setup for quality, liquid large-cap exposure.
+识别当前条件是否符合对优质、流动性大盘敞口的高置信度恐慌买入布局。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for VIX, ticker fear, quality filters, market sentiment, and price history.
+使用 **LLMQuant Data** 获取 VIX、个股恐慌、质量筛选、市场情绪及价格历史。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- VIX snapshot data for broad panic level and percentile.
-- options fear-score data for per-ticker panic.
-- equity market snapshot data and company fundamentals data for size, profitability, liquidity, and quality.
-- market sentiment snapshot data for breadth and risk regime confirmation.
-- equity price history for drawdown and rebound context.
+必需 LLMQuant Data 输入：
+- VIX 快照数据：广泛恐慌水平及百分位。
+- 期权恐慌评分数据：个股恐慌。
+- 股票市场快照数据及公司基本面数据：规模、盈利能力、流动性及质量。
+- 市场情绪快照数据：广度和风险机制确认。
+- 股票价格历史：回撤和反弹背景。
 
-## Signal Gates
+## 信号门控
 
-All gates should pass for an armed signal:
-- VIX is extreme by absolute level and percentile.
-- Ticker or index fear score is extreme.
-- The target is liquid, large-cap, profitable, and not structurally impaired.
-- Market breadth and liquidity are consistent with panic rather than isolated fraud or solvency risk.
+所有门控须全部通过方可触发信号：
+- VIX 在绝对水平和百分位上均处于极端。
+- 个股或指数恐慌评分处于极端。
+- 标的具有流动性、大盘、盈利能力强且无结构性损伤。
+- 市场广度和流动性与恐慌一致，而非孤立的欺诈或偿付能力风险。
 
-Levels:
-- Armed: all gates pass.
-- Watch: broad fear or ticker fear is close.
-- Near: stress is elevated but incomplete.
-- Cold: patience state.
+级别：
+- 触发：所有门控通过。
+- 关注：广泛恐慌或个股恐慌接近。
+- 临近：压力上升但不完整。
+- 冷静：耐心等待状态。
 
-## Workflow
+## 工作流
 
-1. Default to SPY/QQQ/DIA or user-specified liquid target.
-2. Pull VIX, fear, quality, sentiment, and drawdown data.
-3. Evaluate each signal gate.
-4. If armed, recommend staged exposure rather than all-in timing.
-5. If not armed, explain what is missing.
+1. 默认使用 SPY/QQQ/DIA 或用户指定的流动性标的。
+2. 拉取 VIX、恐慌、质量、情绪及回撤数据。
+3. 评估每个信号门控。
+4. 若触发，建议分批建仓而非择时全仓。
+5. 若未触发，说明缺少什么。
 
-## Output Format
+## 输出格式
 
-1. **Signal Level**: armed, watch, near, or cold.
-2. **Gate Table**: VIX, fear score, quality, sentiment, liquidity.
-3. **Action Plan**: stage, wait, hedge, or avoid.
-4. **Failure Modes**: why panic may be justified.
-5. **Data Used**.
+1. **信号级别**：触发、关注、临近或冷静。
+2. **门控表**：VIX、恐慌评分、质量、情绪、流动性。
+3. **行动计划**：分批、等待、对冲或回避。
+4. **失败模式**：恐慌可能有道理的原因。
+5. **所用数据**。
 
-## Guardrails
+## 防护栏
 
-- Do not apply panic-buy logic to low-quality or illiquid names.
-- Do not call every selloff a panic signal.
-- Separate "cheap because fear" from "cheap because fundamentals broke."
+- 不得将恐慌买入逻辑应用于低质量或低流动性标的。
+- 不得将每次下跌都称为恐慌信号。
+- 区分"因恐慌而便宜"与"因基本面恶化而便宜"。
