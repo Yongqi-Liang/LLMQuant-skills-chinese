@@ -1,79 +1,79 @@
 ---
 name: ETF Overlap Report
-description: Compare ETF holdings, concentration, and exposure overlap using LLMQuant Data ETF tools.
+description: 使用 LLMQuant Data ETF 工具比较 ETF 持仓、集中度及敞口重叠。
 input_data_source: LLMQuant Data
 pack: data
 ---
 
-# ETF Overlap Report
+# ETF 重叠报告
 
-## Purpose
+## 目的
 
-Compare one or more ETFs for holdings overlap, concentration risk, issuer/profile context, sector or country exposure, and stale regulatory snapshot limitations.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for ETF identity, profile metadata, holdings, weights, sectors, countries, as-of dates, and coverage notices. State which LLMQuant Data capabilities were used and do not invent data that was not retrieved.
+比较一只或多只 ETF 的持仓重叠度、集中度风险、发行人/概况背景、行业或国家敞口，以及监管快照过期的局限性。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- ETF identity and profile lookup
-- ETF holdings data
-
-Optional data capabilities:
-- equity price history
-
-Freshness:
-- Report the holdings as-of date and stale flag.
-- Explain that holdings are latest available SEC N-PORT regulatory snapshots, not necessarily current daily issuer holdings.
-- Use CUSIP / ISIN when tickers are missing or ambiguous.
-
-Fallback:
-- If an ETF is unsupported, report the coverage notice and do not estimate holdings.
-- If holdings are partial, compute overlap only on retrieved rows and state the limitation.
-
-Output:
-- ETF profile summary
-- Top holdings
-- Overlap table
-- Concentration and exposure notes
-- Data used
+使用 **LLMQuant Data** 作为 ETF 身份、概况元数据、持仓、权重、行业、国家、截止日期及覆盖范围说明的输入数据来源。说明使用了哪些 LLMQuant Data 能力，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Normalize ETF tickers.
-2. Query ETF identity and fund profile metadata for each ETF.
-3. Query ETF holdings for each ETF with enough rows for the requested comparison.
-4. Match holdings by ticker when reliable, otherwise by CUSIP / ISIN.
-5. Compute shared names, combined weight, top-name concentration, and sector/country skew from retrieved rows.
-6. Report unsupported, partial, or stale coverage clearly.
+必需数据能力：
+- ETF 身份与概况查询
+- ETF 持仓数据
+
+可选数据能力：
+- 股票价格历史
+
+时效性：
+- 报告持仓截止日期及过期标记。
+- 说明持仓为最新可用的 SEC N-PORT 监管快照，不一定是发行人当前每日持仓。
+- 当 ticker 缺失或模糊时使用 CUSIP / ISIN。
+
+回退规则：
+- 若某 ETF 不受支持，报告覆盖范围说明，不得估算持仓。
+- 若持仓不完整，仅在已获取行上计算重叠度并注明局限性。
+
+输出：
+- ETF 概况摘要
+- 头部持仓
+- 重叠表
+- 集中度与敞口备注
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Bottom Line**
-2. **ETF Profiles**: fund name, issuer, category, expense ratio if returned, as-of date.
-3. **Overlap Summary**: shared holdings count, overlapping weight, largest common positions.
-4. **Top Holdings Table**
-5. **Concentration / Exposure Risks**
-6. **Coverage Caveats**
-7. **Data Used**
+1. 标准化 ETF ticker。
+2. 查询每只 ETF 的身份和基金概况元数据。
+3. 查询每只 ETF 的持仓，获取足够行数以满足比较需求。
+4. 在 ticker 可靠时按 ticker 匹配持仓，否则按 CUSIP / ISIN 匹配。
+5. 从已获取行中计算共有标的、合计权重、头部集中度及行业/国家偏斜。
+6. 清晰报告不支持、不完整或过期的覆盖范围。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not imply N-PORT holdings are live daily holdings.
-- Do not estimate missing holdings from memory.
-- Do not merge different securities only because names look similar.
-- Do not ignore unsupported or stale coverage notices.
+使用：
+
+1. **核心结论**
+2. **ETF 概况**：基金名称、发行人、类别、费率（如返回）、截止日期。
+3. **重叠摘要**：共有持仓数量、重叠权重、最大共同持仓。
+4. **头部持仓表**
+5. **集中度 / 敞口风险**
+6. **覆盖范围注意事项**
+7. **所用数据**
+
+---
+
+## 防护栏
+
+- 不得暗示 N-PORT 持仓为实时每日持仓。
+- 不得凭记忆估算缺失持仓。
+- 不得仅因名称相似而合并不同证券。
+- 不得忽略不支持或过期的覆盖范围说明。
