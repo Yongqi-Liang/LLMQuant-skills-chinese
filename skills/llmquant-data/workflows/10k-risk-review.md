@@ -1,81 +1,81 @@
 ---
 name: 10-K Risk Review
-description: Review a company's latest 10-K for business, risk, and MD&A evidence using LLMQuant Data SEC filing tools.
+description: 使用 LLMQuant Data SEC 报告工具审查公司最新 10-K 报告中的业务、风险及 MD&A 证据。
 input_data_source: LLMQuant Data
 pack: data
 ---
 
-# 10-K Risk Review
+# 10-K 风险审查
 
-## Purpose
+## 目的
 
-Produce an evidence-first risk review from the latest available annual filing. Use this when the user asks for 10-K risks, business quality, MD&A issues, filing-based downside, or a primary-source company read.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for SEC filing metadata, filing sections, and equity price context. State which LLMQuant Data capabilities were used, cite filing dates and periods of report, and do not invent data that was not retrieved.
+基于最新可用的年报生成以证据为先的风险审查。当用户询问 10-K 风险、业务质量、MD&A 问题、基于报告的 downside 或一手来源的公司分析时使用。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- SEC filing discovery
-- SEC filing section retrieval
-
-Optional data capabilities:
-- equity price history
-- wiki knowledge search
-
-Freshness:
-- Use the latest available 10-K unless the user asks for a specific year.
-- State the accession number, filing date, and period of report.
-- Do not imply the filing reflects events after its filing date.
-
-Fallback:
-- If the latest 10-K is unavailable, report the missing filing and ask for another ticker or year.
-- If a section is unavailable, name the missing section and continue only with retrieved sections.
-
-Output:
-- Executive summary
-- Filing metadata
-- Risk evidence table
-- MD&A / business trend notes
-- Monitoring checklist
-- Data used
+使用 **LLMQuant Data** 作为 SEC 报告元数据、报告章节及股票价格背景的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用报告日期和报告期间，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Resolve the ticker and target year.
-2. Query recent 10-K filing metadata.
-3. Select the latest annual filing unless the user specified another period.
-4. Read Item `1` for business context, Item `1A` for risk factors, and Item `7` for MD&A.
-5. Optionally pull equity price history to frame market reaction or drawdown context.
-6. Extract only evidence that appears in retrieved sections.
-7. Separate company-disclosed risks from your interpretation of severity.
+必需数据能力：
+- SEC 报告发现
+- SEC 报告章节检索
+
+可选数据能力：
+- 股票价格历史
+- 维基知识搜索
+
+时效性：
+- 使用最新可用的 10-K 报告，除非用户指定特定年份。
+- 注明报告编号（accession number）、申报日期及报告期间。
+- 不得暗示报告反映了申报日期之后的事件。
+
+回退规则：
+- 若最新 10-K 不可用，报告缺失的报告并请求其他 ticker 或年份。
+- 若某章节不可用，指明缺失章节并仅使用已获取的章节继续。
+
+输出：
+- 执行摘要
+- 报告元数据
+- 风险证据表
+- MD&A / 业务趋势备注
+- 监控清单
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Bottom Line**: 3-5 bullets on the most important filing risks.
-2. **Filing Metadata**: ticker, form, accession number, filed date, period of report, sections read.
-3. **Risk Evidence Table**: risk, filing evidence, why it matters, severity, monitoring signal.
-4. **MD&A Readthrough**: demand, margin, liquidity, capex, customer, legal, or accounting signals.
-5. **What To Monitor Next**: next filing, key metrics, events, or disclosures.
-6. **Data Used**: LLMQuant Data capabilities and dates.
+1. 确认 ticker 和目标年份。
+2. 查询近期 10-K 报告元数据。
+3. 选择最新年报，除非用户指定了其他期间。
+4. 读取 Item `1`（业务背景）、Item `1A`（风险因素）及 Item `7`（MD&A）。
+5. 可选拉取股票价格历史，用于呈现市场反应或回撤背景。
+6. 仅提取已获取章节中出现的证据。
+7. 将公司披露的风险与你对严重程度的解读分开。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not summarize a 10-Q as a 10-K.
-- Do not quote long filing passages; paraphrase and cite section names.
-- Do not treat risk-factor boilerplate as high severity unless MD&A or business evidence supports it.
-- Do not add outside news unless the user supplies it or another LLMQuant Data tool retrieves it.
+使用：
+
+1. **核心结论**：3-5 条关于最重要报告风险的要点。
+2. **报告元数据**：ticker、表格类型、报告编号、申报日期、报告期间、已读章节。
+3. **风险证据表**：风险、报告证据、重要性、严重程度、监控信号。
+4. **MD&A 解读**：需求、利润率、流动性、资本支出、客户、法律或会计信号。
+5. **后续关注事项**：下一份报告、关键指标、事件或披露。
+6. **所用数据**：LLMQuant Data 能力及日期。
+
+---
+
+## 防护栏
+
+- 不得将 10-Q 作为 10-K 进行总结。
+- 不得大段引用报告原文；应概述并注明章节名称。
+- 不得将风险因素中的模板化描述视为高严重程度，除非 MD&A 或业务证据支持。
+- 不得添加外部新闻，除非用户提供或由其他 LLMQuant Data 工具获取。

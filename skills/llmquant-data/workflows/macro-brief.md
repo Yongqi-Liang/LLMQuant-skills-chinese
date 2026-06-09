@@ -1,83 +1,83 @@
 ---
 name: Macro Brief
-description: Compose a market-facing macro brief from LLMQuant Data macro indicators, prices, crypto, and research context.
+description: 基于 LLMQuant Data 宏观指标、价格、加密资产及研究背景撰写面向市场的宏观简报。
 input_data_source: LLMQuant Data
 pack: workflows
 ---
 
-# Macro Brief
+# 宏观简报
 
-## Purpose
+## 目的
 
-Create a concise macro brief that connects data releases, policy pressure, rates, equity context, commodities or crypto, and portfolio implications.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for macro indicators, historical observations, equity prices, crypto snapshots, and research context. State which LLMQuant Data capabilities were used, cite observation dates or price ranges, and do not invent data that was not retrieved.
+创建一份简洁的宏观简报，将数据发布、政策压力、利率、股票背景、大宗商品或加密资产及组合影响串联起来。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- macro indicator snapshot data
-- macro indicator history
-
-Optional data capabilities:
-- equity price history
-- crypto market snapshot data
-- crypto historical candle data
-- paper research search
-- wiki knowledge search
-
-Freshness:
-- State each macro observation date.
-- State market price date ranges.
-- Do not treat monthly or quarterly macro data as if it were intraday.
-
-Fallback:
-- If an indicator is unsupported, use macro indicator discovery or explain the missing series.
-- If market context is unavailable, keep the brief macro-only.
-
-Output:
-- Regime call
-- Data dashboard
-- Market implications
-- Risk scenarios
-- Data used
+使用 **LLMQuant Data** 作为宏观指标、历史观察、股票价格、加密资产快照及研究背景的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用观察日期或价格区间，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Define the region, horizon, and assets in scope.
-2. Pull latest macro snapshots and histories for inflation, labor, rates, curve, growth, and liquidity.
-3. Pull market price context for relevant equity indices, ETFs, or crypto if requested.
-4. Identify the dominant regime and the main contradiction.
-5. Convert the regime into asset implications with caveats.
-6. List the next releases that could break the thesis.
+必需数据能力：
+- 宏观指标快照数据
+- 宏观指标历史
+
+可选数据能力：
+- 股票价格历史
+- 加密资产市场快照数据
+- 加密资产历史 K 线数据
+- 论文研究搜索
+- 维基知识搜索
+
+时效性：
+- 注明每个宏观指标的观察日期。
+- 注明市场价格数据区间。
+- 不得将月度或季度宏观数据当作日内数据处理。
+
+回退规则：
+- 若某指标不受支持，使用宏观指标发现功能或说明缺失的序列。
+- 若市场背景不可用，保持简报仅限于宏观层面。
+
+输出：
+- 机制判定
+- 数据仪表盘
+- 市场影响
+- 风险情景
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **One-Line Regime Call**
-2. **Dashboard**
-3. **What Changed**
-4. **Asset Implications**
-5. **Risks To The View**
-6. **Next Data**
-7. **Data Used**
+1. 确定地区、时间范围及涉及的资产。
+2. 拉取通胀、就业、利率、曲线、增长及流动性的最新宏观快照和历史数据。
+3. 拉取相关股票指数、ETF 或加密资产的市场价格背景（如用户要求）。
+4. 识别主导机制及主要矛盾。
+5. 将机制转化为资产影响并注明注意事项。
+6. 列出可能推翻当前论点即将发布的数据。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not overfit a macro narrative to one release.
-- Do not hide frequency mismatches.
-- Do not present policy path as certain.
-- Do not use market data outside the retrieved range.
+使用：
+
+1. **一句话机制判定**
+2. **仪表盘**
+3. **变化要点**
+4. **资产影响**
+5. **观点风险**
+6. **下期数据**
+7. **所用数据**
+
+---
+
+## 防护栏
+
+- 不得仅凭一次数据发布过度拟合宏观叙事。
+- 不得隐藏频率不匹配的问题。
+- 不得将政策路径呈现为确定性事件。
+- 不得使用超出获取区间的市场数据。

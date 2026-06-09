@@ -1,79 +1,79 @@
 ---
 name: U.S. Macro Snapshot
-description: Build a compact U.S. macro regime read using LLMQuant Data macro indicators.
+description: 使用 LLMQuant Data 宏观指标构建简洁的美国宏观机制研判。
 input_data_source: LLMQuant Data
 pack: data
 ---
 
-# U.S. Macro Snapshot
+# 美国宏观快照
 
-## Purpose
+## 目的
 
-Create a dated macro regime snapshot across inflation, labor, rates, growth, liquidity, and curve signals. Use this for Fed regime briefs, market context, macro PM setup, or strategy risk framing.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for U.S. macro indicators, observation dates, historical context, and indicator metadata. State which LLMQuant Data capabilities were used, cite observation dates, and do not invent data that was not retrieved.
+创建一份涵盖通胀、就业、利率、增长、流动性及曲线信号的带日期宏观机制快照。适用于美联储机制简报、市场背景、宏观 PM 布局或策略风险框架。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- macro indicator snapshot data
-
-Optional data capabilities:
-- macro indicator history
-- macro indicator discovery
-- equity price history
-- crypto market snapshot data
-
-Freshness:
-- Report each indicator's latest observation date.
-- Do not compare indicators with different frequencies without noting the mismatch.
-- Distinguish data release timing from market pricing.
-
-Fallback:
-- If an indicator is unavailable, name it and continue with available indicators.
-- If the user asks for an unsupported indicator, use macro indicator discovery to find the nearest supported series.
-
-Output:
-- Regime summary
-- Indicator table
-- Policy and market readthrough
-- Watchlist
-- Data used
+使用 **LLMQuant Data** 作为美国宏观指标、观察日期、历史背景及指标元数据的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用观察日期，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Clarify region as U.S. unless the user specifies otherwise.
-2. Pull snapshots for core inflation, unemployment, nonfarm payrolls, Fed funds, 2Y yield, 10Y yield, 10Y-2Y curve, real GDP, and WTI or financial conditions when relevant.
-3. Pull history for indicators where trend matters.
-4. Classify regime: disinflation / reflation, easing / tightening, growth acceleration / slowdown, risk-on / risk-off liquidity.
-5. Tie every regime claim to dated indicator evidence.
+必需数据能力：
+- 宏观指标快照数据
+
+可选数据能力：
+- 宏观指标历史
+- 宏观指标发现
+- 股票价格历史
+- 加密资产市场快照数据
+
+时效性：
+- 报告每个指标的最新观察日期。
+- 不得在未注明频率差异的情况下比较不同频率的指标。
+- 区分数据发布时间与市场价格反映。
+
+回退规则：
+- 若某指标不可用，指明该指标并使用可用指标继续。
+- 若用户请求不受支持的指标，使用宏观指标发现功能查找最接近的支持序列。
+
+输出：
+- 机制摘要
+- 指标表
+- 政策与市场解读
+- 关注清单
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Macro Regime**
-2. **Indicator Dashboard**: indicator, latest value, prior value, date, delta, interpretation.
-3. **Policy Read**: Fed pressure, curve signal, inflation/labor balance.
-4. **Market Readthrough**: equities, rates, USD, commodities, crypto if relevant.
-5. **Next Data To Watch**
-6. **Data Used**
+1. 确认地区为美国，除非用户另行指定。
+2. 拉取核心通胀、失业率、非农就业、联邦基金利率、2 年期收益率、10 年期收益率、10Y-2Y 曲线、实际 GDP 及 WTI 或金融条件的快照（相关时）。
+3. 对趋势重要的指标拉取历史数据。
+4. 分类机制：通缩 / 再通胀、宽松 / 紧缩、增长加速 / 放缓、风险偏好 / 风险规避流动性。
+5. 将每个机制判断与带日期的指标证据挂钩。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not call a regime change from one noisy observation.
-- Do not mix monthly, quarterly, and daily series without stating date/frequency differences.
-- Do not forecast policy as fact.
-- Do not use unsupported macro series from memory.
+使用：
+
+1. **宏观机制**
+2. **指标仪表盘**：指标、最新值、前值、日期、变动、解读。
+3. **政策研判**：美联储压力、曲线信号、通胀/就业平衡。
+4. **市场解读**：股票、利率、美元、大宗商品、加密资产（相关时）。
+5. **下期关注数据**
+6. **所用数据**
+
+---
+
+## 防护栏
+
+- 不得仅凭一个噪音数据点断言机制变化。
+- 不得在混合月度、季度和日度序列时不注明日期/频率差异。
+- 不得将政策预测当作事实。
+- 不得凭记忆使用不受支持的宏观序列。

@@ -1,78 +1,78 @@
 ---
 name: Ticker Smart-Money Holders
-description: Identify top 13F holders and crowding signals for a U.S. ticker using LLMQuant Data.
+description: 使用 LLMQuant Data 识别美国 ticker 的顶级 13F 持有人及拥挤信号。
 input_data_source: LLMQuant Data
 pack: data
 ---
 
-# Ticker Smart-Money Holders
+# Ticker 聪明钱持有人
 
-## Purpose
+## 目的
 
-Show which institutional managers in the LLMQuant Data 13F universe hold a ticker, how concentrated the ownership appears, and what the limitations of 13F data are.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for 13F holder lists, manager holdings, report periods, and scope notices. State which LLMQuant Data capabilities were used, cite the ranking period and period of report, and do not invent data that was not retrieved.
+展示 LLMQuant Data 13F 范围中哪些机构管理人持有某 ticker，所有权集中度如何，以及 13F 数据的局限性。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- ticker-level 13F holder data
-
-Optional data capabilities:
-- manager-level 13F holdings data
-- equity price history
-
-Freshness:
-- Use the latest available 13F universe unless the user specifies a year and quarter.
-- State the ranking period, manager period of report, and scope notice.
-- Explain that 13F data is delayed, long-only, U.S.-listed, and excludes shorts and many non-equity exposures.
-
-Fallback:
-- If the ticker has no holders in scope, report that this is within the LLMQuant Data Top 1000 universe, not the full SEC filer universe.
-- If a manager is requested but unavailable, report the resolver or scope limitation.
-
-Output:
-- Holder summary
-- Top holders table
-- Crowding interpretation
-- Caveats
-- Data used
+使用 **LLMQuant Data** 作为 13F 持有人名单、管理人持仓、报告期间及范围说明的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用排名期间和报告期间，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Normalize the ticker.
-2. Query 13F holder lists for the ticker.
-3. Rank holders by reported position value.
-4. Compare top holder values with manager reportable value when available.
-5. Identify concentration, recognizable specialist holders, broad passive-like ownership, or lack of sponsor interest.
-6. Keep conclusions modest because 13F data is delayed and incomplete.
+必需数据能力：
+- ticker 级别 13F 持有人数据
+
+可选数据能力：
+- 管理人类别 13F 持仓数据
+- 股票价格历史
+
+时效性：
+- 使用最新可用的 13F 范围，除非用户指定年份和季度。
+- 注明排名期间、管理人报告期间及范围说明。
+- 说明 13F 数据存在延迟、仅限多头、仅限美国上市标的，且不包含空头及许多非股票敞口。
+
+回退规则：
+- 若该 ticker 在范围内无持有人，说明这是 LLMQuant Data Top 1000 范围，而非完整的 SEC 申报人范围。
+- 若用户查询的管理人不可用，报告解析器或范围限制。
+
+输出：
+- 持有人摘要
+- 顶级持有人表
+- 拥挤度解读
+- 注意事项
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Bottom Line**
-2. **13F Metadata**: ticker, ranking period, total holders in scope, aggregate value.
-3. **Top Holders Table**: manager, rank, position value, shares, period of report.
-4. **Crowding Read**: concentration, sponsorship, and limitations.
-5. **Follow-Up Checks**: manager-specific holdings, price action, filing read, or peer comparison.
-6. **Data Used**
+1. 标准化 ticker。
+2. 查询该 ticker 的 13F 持有人名单。
+3. 按报告持仓市值对持有人排序。
+4. 将顶级持有人的持仓市值与管理人报告资产规模进行比较（可用时）。
+5. 识别集中度、知名专业持有人、类被动所有权或发起人兴趣缺失。
+6. 结论保持审慎，因为 13F 数据存在延迟且不完整。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not call 13F holdings "current ownership."
-- Do not infer short positions from absence of a long filing.
-- Do not compare against full-market ownership unless that data was retrieved.
-- Do not hide Top 1000 universe limitations.
+使用：
+
+1. **核心结论**
+2. **13F 元数据**：ticker、排名期间、范围内持有人总数、合计市值。
+3. **顶级持有人表**：管理人、排名、持仓市值、股数、报告期间。
+4. **拥挤度研判**：集中度、发起人情况及局限性。
+5. **后续检查**：管理人专项持仓、价格走势、报告解读或同业比较。
+6. **所用数据**
+
+---
+
+## 防护栏
+
+- 不得将 13F 持仓称为"当前持股"。
+- 不得从无多头申报推断存在空头仓位。
+- 除非获取了全市场所有权数据，否则不得进行全市场比较。
+- 不得隐瞒 Top 1000 范围限制。
