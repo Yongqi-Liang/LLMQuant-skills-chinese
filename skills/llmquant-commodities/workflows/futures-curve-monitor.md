@@ -1,47 +1,47 @@
-# Futures Curve Monitor
+# 期货曲线监控
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks whether a commodity futures curve is in contango or backwardation, how roll yield is changing, or what curve shifts imply for futures, ETFs, producers, or consumers.
+当用户询问某大宗商品期货曲线处于升水还是贴水、展期收益如何变化，或曲线变动对期货、ETF、生产商或消费商意味着什么时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required or future:
-- commodity futures curve data: contract ladder, prices, maturities, volume, and open interest.
-- historical commodity curve snapshots: historical curve snapshots for percentile and shift analysis.
-- commodity spot or front-month market data: spot or front-month context.
-- commodity inventory data: inventory pressure and release date.
+必需或未来：
+- 大宗商品期货曲线数据：合约阶梯、价格、到期日、成交量及持仓量。
+- 历史大宗商品曲线快照：用于百分位分析和曲线变动分析的历史快照。
+- 大宗商品现货或近月市场数据：现货或近月背景参考。
+- 大宗商品库存数据：库存压力及发布日期。
 
-Optional:
-- equity price history
-- ETF holdings data
-- macro indicator snapshot data
+可选：
+- 股票价格历史
+- ETF 持仓数据
+- 宏观指标快照数据
 
-Freshness:
-- Report curve timestamp, contract months, front-month roll date, and inventory date.
+时效性：
+- 报告曲线时间戳、合约月份、近月展期日期及库存日期。
 
-Fallback:
-- If curve history is unavailable, calculate only the current curve shape and label history-based conclusions as unavailable.
+回退规则：
+- 若曲线历史不可用，仅计算当前曲线形态，并将基于历史的结论标注为不可用。
 
-## Workflow
+## 工作流
 
-1. Define contract universe, benchmark months, and whether the user needs spot, futures, ETF, or equity implications.
-2. Pull the current curve and available historical curve snapshots.
-3. Calculate front-to-second spread, 3/6/12-month spreads, annualized roll yield, and curve percentile.
-4. Link curve shape to inventory, macro, and seasonal evidence when available.
-5. Translate the curve into implications for futures exposure, commodity ETFs, producers, and consumers.
+1. 确定合约范围、基准月份，以及用户需要的是现货、期货、ETF 还是股票层面的影响分析。
+2. 拉取当前曲线及可用的历史曲线快照。
+3. 计算近月-次月价差、3/6/12 个月价差、年化展期收益及曲线百分位。
+4. 在可用时，将曲线形态与库存、宏观及季节性证据关联。
+5. 将曲线信号转化为对期货敞口、大宗商品 ETF、生产商及消费商的影响。
 
-## Output Format
+## 输出格式
 
-1. **Curve State**
-2. **Roll Yield**
-3. **Curve Shift**
-4. **Inventory / Macro Context**
-5. **Implications**
-6. **Data Used**
+1. **曲线状态**
+2. **展期收益**
+3. **曲线变动**
+4. **库存 / 宏观背景**
+5. **影响分析**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not estimate futures contracts without LLMQuant Data.
-- Do not assume ETF performance equals spot commodity performance.
-- Separate current curve math from historical percentile analysis.
+- 不得在没有 LLMQuant Data 的情况下估算期货合约。
+- 不得假设 ETF 表现等于现货商品表现。
+- 将当前曲线计算与历史百分位分析分开呈现。

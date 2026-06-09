@@ -1,50 +1,50 @@
-# Commodity Market Lens
+# 大宗商品市场透视
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks for a commodity market brief, commodity regime read, or supply/demand view for oil, gas, gold, copper, agricultural commodities, or another commodity complex.
+当用户要求对原油、天然气、黄金、铜、农产品或其他大宗商品板块进行市场简报、市场状态研判或供需分析时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required or future:
-- commodity spot or front-month market data: spot price, recent change, volume, and observation timestamp.
-- commodity futures curve data: active futures contracts, maturities, prices, curve shape, and roll yield.
-- commodity inventory data: inventory levels, draws/builds, and regional storage data.
-- commodity production and demand data: production, demand, export/import, and utilization series.
-- macro indicator snapshot data and macro indicator history: rates, USD, inflation, growth, and energy indicators.
-- equity price history: related producer, consumer, or ETF proxies.
+必需或未来：
+- 大宗商品现货或近月市场数据：现货价格、近期变动、成交量及观察时间戳。
+- 大宗商品期货曲线数据：活跃期货合约、到期日、价格、曲线形态及展期收益。
+- 大宗商品库存数据：库存水平、去库/累库及区域仓储数据。
+- 大宗商品产量与需求数据：产量、需求、进出口及利用率序列。
+- 宏观指标快照数据及宏观指标历史：利率、美元、通胀、增长及能源指标。
+- 股票价格历史：相关生产商、消费商或 ETF 代理标的。
 
-Optional:
-- commodity news and event context
-- weather risk data
-- geopolitical event context
+可选：
+- 大宗商品新闻与事件背景
+- 天气风险数据
+- 地缘政治事件背景
 
-Freshness:
-- Report observation dates, contract dates, inventory release dates, and stale-data notices.
+时效性：
+- 报告观察日期、合约日期、库存发布日期及过期数据提示。
 
-Fallback:
-- If commodity endpoints are unavailable, name the missing LLMQuant Data inputs and continue only with available macro, price-proxy, or equity evidence.
+回退规则：
+- 若大宗商品接口不可用，指明缺失的 LLMQuant Data 输入，并仅使用可用的宏观、价格代理或股票证据继续。
 
-## Workflow
+## 工作流
 
-1. Define commodity, geography, benchmark contract, horizon, and decision context.
-2. Pull spot, futures curve, inventory, production/demand, macro, FX, and related equity/ETF data.
-3. Classify price trend, curve shape, inventory pressure, macro tailwind/headwind, and event risk.
-4. Separate structural signals from short-term positioning or event noise.
-5. Produce a data-grounded market lens with scenarios.
+1. 确定商品品种、地理区域、基准合约、时间范围及决策背景。
+2. 拉取现货、期货曲线、库存、产量/需求、宏观、外汇及相关股票/ETF 数据。
+3. 分类价格趋势、曲线形态、库存压力、宏观顺风/逆风及事件风险。
+4. 将结构性信号与短期仓位或事件噪音区分开。
+5. 生成有数据支撑的市场透视报告，包含情景分析。
 
-## Output Format
+## 输出格式
 
-1. **Commodity View**
-2. **Price And Curve**
-3. **Supply / Demand**
-4. **Macro Linkage**
-5. **Related Equity Or ETF Read-Through**
-6. **Scenarios**
-7. **Data Used**
+1. **大宗商品观点**
+2. **价格与曲线**
+3. **供给 / 需求**
+4. **宏观联动**
+5. **相关股票或 ETF 传导信号**
+6. **情景分析**
+7. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not infer current spot prices, inventories, or curve shape without LLMQuant Data.
-- Do not treat commodity ETFs as perfect spot exposure unless holdings and roll mechanics are checked.
-- Do not make personalized trading advice claims.
+- 不得在没有 LLMQuant Data 的情况下推断当前现货价格、库存或曲线形态。
+- 除非核实了持仓和展期机制，否则不得将大宗商品 ETF 视为完美的现货敞口。
+- 不得做出个性化交易建议的声明。
