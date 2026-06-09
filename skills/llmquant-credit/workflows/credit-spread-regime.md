@@ -1,42 +1,42 @@
-# Credit Spread Regime
+# 信用利差机制
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks whether credit spreads are tight, wide, widening, complacent, stressed, or signaling recession risk.
+当用户询问信用利差是偏窄、偏宽、正在走阔、市场自满、承压还是预示衰退风险时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- investment-grade, high-yield, leveraged-loan, CDS, sector, and rating-bucket spread data when available.
-- rates, yield curves, real rates, inflation, growth, unemployment, liquidity, and financial conditions data.
-- equity index, volatility, bank, small-cap, commodity, and FX market data.
-- credit ETF prices, flows, discounts, and holdings when available.
+必需：
+- 投资级、高收益、杠杆贷款、CDS、行业及评级区间利差数据（可用时）。
+- 利率、收益率曲线、实际利率、通胀、增长、失业率、流动性及金融条件数据。
+- 股票指数、波动率、银行、小盘股、大宗商品及外汇市场数据。
+- 信用 ETF 价格、折溢价、资金流及持仓数据（可用时）。
 
-Freshness:
-- Report spread date, market price date, macro observation dates, and stale-data notices.
+时效性：
+- 报告利差日期、市场价格日期、宏观观察日期及过期数据提示。
 
-Fallback:
-- If spread histories are unavailable, use ETF, equity, rates, and macro proxies and label the analysis as proxy-based.
+回退规则：
+- 若利差历史不可用，使用 ETF、股票、利率及宏观代理，并将分析标注为基于代理。
 
-## Workflow
+## 工作流
 
-1. Define region, credit universe, rating bucket, and horizon.
-2. Measure current spread level, change, percentile, and curve shape where data exists.
-3. Compare spreads with macro, rates, equity volatility, liquidity, and default-cycle evidence.
-4. Identify sectors or rating buckets carrying the stress.
-5. Translate the regime into risk posture: add, hold, hedge, reduce, or wait.
+1. 确定地区、信用范围、评级区间及时间范围。
+2. 在数据可用时，衡量当前利差水平、变动、百分位及曲线形态。
+3. 将利差与宏观、利率、股票波动率、流动性及违约周期证据进行比较。
+4. 识别承载压力的行业或评级区间。
+5. 将利差机制转化为风险姿态：加仓、持有、对冲、减仓或观望。
 
-## Output Format
+## 输出格式
 
-1. **Spread Regime**
-2. **Credit Dashboard**
-3. **Macro Confirmation**
-4. **Sector / Rating Stress**
-5. **Portfolio Implications**
-6. **Data Used**
+1. **利差机制**
+2. **信用仪表盘**
+3. **宏观验证**
+4. **行业 / 评级压力**
+5. **组合影响**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not call spreads tight or wide without a reference window.
-- Do not use price-only proxies as true spreads without disclosure.
-- Do not ignore duration when comparing credit instruments.
+- 不得在没有参考窗口的情况下断言利差偏窄或偏宽。
+- 不得将仅基于价格的代理未经披露即视为真实利差。
+- 比较信用工具时不得忽略久期。

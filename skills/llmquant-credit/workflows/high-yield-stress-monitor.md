@@ -1,42 +1,42 @@
-# High Yield Stress Monitor
+# 高收益压力监控
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks about high-yield stress, refinancing risk, fallen angels, default pressure, or credit-market contagion.
+当用户询问高收益市场压力、再融资风险、堕落天使、违约压力或信用市场传染时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- high-yield spreads, distressed ratios, default rates, rating migration, and sector spread dispersion when available.
-- maturity walls, refinancing calendar, issuer fundamentals, and debt-service burden.
-- high-yield ETF prices, discounts, flows, holdings, and liquidity context.
-- macro indicators, rates, equity drawdowns, volatility, commodity prices, and bank stress indicators.
+必需：
+- 高收益利差、困境比率、违约率、评级迁移及行业利差离散度（可用时）。
+- 到期墙、再融资日历、发行人基本面及偿债负担。
+- 高收益 ETF 价格、折溢价、资金流、持仓及流动性背景。
+- 宏观指标、利率、股票回撤、波动率、大宗商品价格及银行压力指标。
 
-Freshness:
-- Report spread date, rating date, issuer filing date, ETF holdings date, and macro observation dates.
+时效性：
+- 报告利差日期、评级日期、发行人报告日期、ETF 持仓日期及宏观观察日期。
 
-Fallback:
-- If distressed ratios or default data are unavailable, produce a proxy stress monitor and list missing credit inputs.
+回退规则：
+- 若困境比率或违约数据不可用，生成代理压力监控报告并列出缺失的信用输入。
 
-## Workflow
+## 工作流
 
-1. Define high-yield universe, sector focus, and risk horizon.
-2. Check market stress: spreads, dispersion, ETF discounts, liquidity, and equity drawdowns.
-3. Check fundamental stress: leverage, coverage, free cash flow, maturity wall, and downgrade risk.
-4. Identify vulnerable sectors and issuers.
-5. Map stress level to portfolio actions and monitoring triggers.
+1. 确定高收益范围、行业重点及风险时间范围。
+2. 检查市场压力：利差、离散度、ETF 折溢价、流动性及股票回撤。
+3. 检查基本面压力：杠杆率、覆盖率、自由现金流、到期墙及降级风险。
+4. 识别脆弱行业和发行人。
+5. 将压力水平映射为组合操作及监控触发条件。
 
-## Output Format
+## 输出格式
 
-1. **Stress Level**
-2. **Market Stress**
-3. **Fundamental Stress**
-4. **Vulnerable Segments**
-5. **Triggers / Hedges**
-6. **Data Used**
+1. **压力水平**
+2. **市场压力**
+3. **基本面压力**
+4. **脆弱板块**
+5. **触发条件 / 对冲**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not infer default risk from price declines alone.
-- Do not ignore refinancing calendar and rate environment.
-- Distinguish market liquidity stress from issuer solvency stress.
+- 不得仅凭价格下跌推断违约风险。
+- 不得忽略再融资日历和利率环境。
+- 区分市场流动性压力与发行人偿付能力压力。

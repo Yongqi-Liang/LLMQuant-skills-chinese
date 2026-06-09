@@ -1,42 +1,42 @@
-# Issuer Credit Risk Review
+# 发行人信用风险审查
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks whether a company, issuer, bond, loan, or credit-sensitive equity has elevated credit risk.
+当用户询问某公司、发行人、债券、贷款或信用敏感型股票是否存在信用风险上升时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- issuer filings, financial statements, MD&A, risk factors, liquidity disclosures, and debt footnotes.
-- debt maturity schedule, interest expense, cash, revolver capacity, covenant terms, ratings, and refinancing events.
-- bond prices, spreads, CDS, rating history, and credit ETF context when available.
-- equity price history, volatility, short interest, sector peers, rates, and macro context.
+必需：
+- 发行人报告、财务报表、管理层讨论与分析、风险因素、流动性披露及债务附注。
+- 债务到期计划、利息支出、现金、循环信贷额度、条款条件、评级及再融资事件。
+- 债券价格、利差、CDS、评级历史及信用 ETF 背景（可用时）。
+- 股票价格历史、波动率、做空比例、行业可比公司、利率及宏观背景。
 
-Freshness:
-- Report filing period, filing date, market price date, rating date, and stale-data notices.
+时效性：
+- 报告报告期间、报告日期、市场价格日期、评级日期及过期数据提示。
 
-Fallback:
-- If debt schedule or covenant terms are unavailable, avoid covenant headroom math and list the missing terms.
+回退规则：
+- 若债务计划或条款条件不可用，避免进行条款余量计算，并列出缺失的条款。
 
-## Workflow
+## 工作流
 
-1. Identify issuer, securities, capital-structure layer, and time horizon.
-2. Build the credit snapshot: leverage, coverage, liquidity, free cash flow, and maturity wall.
-3. Compare market signals: spreads, CDS, equity drawdown, volatility, and sector pressure.
-4. Review catalysts: refinancing, downgrade, covenant test, earnings, commodity or FX sensitivity.
-5. Classify risk as improving, stable, watch, stressed, or distressed with evidence.
+1. 识别发行人、证券、资本结构层级及时间范围。
+2. 构建信用快照：杠杆率、覆盖率、流动性、自由现金流及到期墙。
+3. 比较市场信号：利差、CDS、股票回撤、波动率及行业压力。
+4. 审视催化剂：再融资、降级、条款测试、财报、大宗商品或外汇敏感性。
+5. 将有证据支撑的风险分类为：改善、稳定、关注、承压或困境。
 
-## Output Format
+## 输出格式
 
-1. **Credit Verdict**
-2. **Balance-Sheet Snapshot**
-3. **Maturity / Liquidity**
-4. **Market Signals**
-5. **Catalysts And Watch Items**
-6. **Data Used**
+1. **信用结论**
+2. **资产负债表快照**
+3. **到期 / 流动性**
+4. **市场信号**
+5. **催化剂与关注事项**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not infer debt terms from ticker memory.
-- Do not treat equity upside as credit safety.
-- Label absent bond, CDS, rating, or covenant data as missing.
+- 不得凭 ticker 记忆推断债务条款。
+- 不得将股票上涨空间等同于信用安全。
+- 缺失的债券、CDS、评级或条款数据须标注为缺失。
