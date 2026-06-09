@@ -1,43 +1,43 @@
-# Crypto Token Research
+# 加密代币研究
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks for a token, protocol, chain, or crypto project research memo.
+当用户要求对某代币、协议、链或加密项目撰写研究备忘录时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- token price, volume, market cap, fully diluted value, circulating supply, and liquidity history.
-- tokenomics data such as emissions, unlocks, treasury, burn mechanics, staking, and holder concentration.
-- protocol fundamentals such as TVL, revenue, fees, active users, transactions, developer activity, and governance.
-- security, bridge, smart-contract, regulatory, and counterparty risk context.
-- comparable-token valuation and market-regime evidence.
+必需：
+- 代币价格、成交量、市值、完全稀释估值、流通供应量及流动性历史。
+- 代币经济学数据，如排放、解锁、国库、销毁机制、质押及持有人集中度。
+- 协议基本面数据，如 TVL、收入、手续费、活跃用户、交易量、开发者活跃度及治理。
+- 安全、跨链桥、智能合约、监管及交易对手风险背景。
+- 可比代币估值及市场机制证据。
 
-Freshness:
-- Report token metric dates, supply dates, protocol metric windows, listing venues, and stale-data notices.
+时效性：
+- 报告代币指标日期、供应数据日期、协议指标窗口、上线交易所及过期数据提示。
 
-Fallback:
-- If protocol metrics or tokenomics are unavailable, state the missing data and avoid valuation conclusions that depend on them.
+回退规则：
+- 若协议指标或代币经济学数据不可用，说明缺失数据，并避免依赖这些数据的估值结论。
 
-## Workflow
+## 工作流
 
-1. Identify the asset, chain, contract, project scope, and investment horizon.
-2. Summarize what the token economically controls and who the residual claimant is.
-3. Evaluate demand, supply, unlock pressure, liquidity, and holder concentration.
-4. Compare usage and valuation versus relevant protocol or sector peers.
-5. Translate evidence into a thesis, key monitors, and disconfirming signals.
+1. 识别资产、链、合约、项目范围及投资时间范围。
+2. 概述代币在经济上控制什么以及谁是剩余索取权人。
+3. 评估需求、供给、解锁压力、流动性及持有人集中度。
+4. 将使用量和估值与相关协议或行业可比对象进行比较。
+5. 将证据转化为投资论点、关键监控指标及证伪信号。
 
-## Output Format
+## 输出格式
 
-1. **Token Thesis**
-2. **Economics / Tokenomics**
-3. **Usage And Traction**
-4. **Valuation / Comps**
-5. **Risks And Monitors**
-6. **Data Used**
+1. **代币论点**
+2. **经济模型 / 代币经济学**
+3. **使用量与增长**
+4. **估值 / 可比对象**
+5. **风险与监控**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not assume token ownership equals protocol equity.
-- Do not ignore unlocks, dilution, bridge risk, or governance control.
-- Do not use social hype as evidence unless it is labeled as sentiment.
+- 不得假设代币持有等同于协议股权。
+- 不得忽略解锁、稀释、跨链桥风险或治理控制权。
+- 不得将社交媒体炒作作为证据使用，除非明确标注为情绪指标。

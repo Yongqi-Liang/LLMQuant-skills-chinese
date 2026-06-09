@@ -1,43 +1,43 @@
-# Crypto Perp Funding Monitor
+# 永续合约资金费率监控
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks about perpetual funding, basis trades, leverage crowding, short squeezes, long squeezes, or carry conditions in crypto.
+当用户询问永续合约资金费率、基差交易、杠杆拥挤度、空头挤压、多头挤压或加密资产套利条件时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- perpetual funding rates by venue, asset, and interval.
-- spot and perpetual prices for basis and annualized carry calculations.
-- open interest, volume, liquidation, borrow, and margin-stress data when available.
-- spot liquidity, exchange depth, and cross-venue price dispersion.
-- macro and event context that can change funding or basis.
+必需：
+- 按交易所、资产及间隔划分的永续合约资金费率。
+- 现货与永续合约价格，用于基差和年化收益计算。
+- 持仓量、成交量、爆仓、借贷及保证金压力数据（可用时）。
+- 现货流动性、交易所深度及跨交易所价格离散度。
+- 可能影响资金费率或基差的宏观与事件背景。
 
-Freshness:
-- Report venue, timestamp, funding interval, contract type, and calculation window.
+时效性：
+- 报告交易所、时间戳、资金费率间隔、合约类型及计算窗口。
 
-Fallback:
-- If open interest or liquidation data is unavailable, provide funding and basis only and avoid squeeze-probability claims.
+回退规则：
+- 若持仓量或爆仓数据不可用，仅提供资金费率和基差分析，避免做出挤压概率判断。
 
-## Workflow
+## 工作流
 
-1. Define assets, venues, contract types, and whether the user needs monitoring or a trade review.
-2. Pull funding, spot, perp, basis, open interest, and liquidation evidence.
-3. Calculate current funding, annualized carry, basis, and recent percentile where history exists.
-4. Interpret whether the market is one-sided, balanced, or stressed.
-5. Explain possible expressions and failure modes, including fees, slippage, venue risk, and liquidation risk.
+1. 确定资产、交易所、合约类型，以及用户需要的是监控还是交易审查。
+2. 拉取资金费率、现货、永续合约、基差、持仓量及爆仓证据。
+3. 计算当前资金费率、年化收益、基差及历史百分位（有历史数据时）。
+4. 判断市场处于单边、均衡还是承压状态。
+5. 说明可能的交易表达及失败模式，包括手续费、滑点、交易所风险及爆仓风险。
 
-## Output Format
+## 输出格式
 
-1. **Funding State**
-2. **Basis / Carry**
-3. **Crowding And Stress**
-4. **Possible Expressions**
-5. **Failure Modes**
-6. **Data Used**
+1. **资金费率状态**
+2. **基差 / 收益**
+3. **拥挤度与压力**
+4. **可能的交易表达**
+5. **失败模式**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not call a funding trade market-neutral without borrow, margin, liquidation, and venue-risk checks.
-- Do not annualize stale or mismatched funding intervals.
-- Do not compare venues without noting contract specifications.
+- 未经借贷、保证金、爆仓及交易所风险检查，不得将资金费率交易称为市场中性。
+- 不得对过期或间隔不匹配的资金费率进行年化。
+- 比较不同交易所时须注明合约规格差异。

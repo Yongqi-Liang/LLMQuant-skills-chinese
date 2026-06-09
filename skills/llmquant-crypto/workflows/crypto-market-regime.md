@@ -1,43 +1,43 @@
-# Crypto Market Regime
+# 加密市场机制
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks whether crypto is risk-on, risk-off, levered, range-bound, capitulating, or entering a new market regime.
+当用户询问加密市场处于风险偏好还是风险规避、杠杆过高、区间震荡、恐慌性抛售还是正在进入新的市场机制时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- crypto price and volume history for BTC, ETH, major tokens, and the requested benchmark universe.
-- realized volatility, drawdown, momentum, correlation, and market breadth data for regime scoring.
-- crypto liquidity data such as stablecoin supply, exchange liquidity, ETF flows, or venue depth when available.
-- perpetual funding, basis, open interest, and liquidation data for leverage and crowding context.
-- macro and cross-asset context such as rates, dollar, liquidity, equities, gold, and risk indicators.
+必需：
+- BTC、ETH、主流代币及指定基准范围的价格与成交量历史。
+- 实现波动率、回撤、动量、相关性及市场广度数据，用于机制判定。
+- 加密资产流动性数据，如稳定币供应量、交易所流动性、ETF 资金流或交易所深度（可用时）。
+- 永续合约资金费率、基差、持仓量及爆仓数据，用于杠杆和拥挤度分析。
+- 宏观及跨资产背景，如利率、美元、流动性、股票、黄金及风险指标。
 
-Freshness:
-- Report price window, venue timestamp, funding interval, macro observation dates, and stale-data notices.
+时效性：
+- 报告价格窗口、交易所时间戳、资金费率间隔、宏观观察日期及过期数据提示。
 
-Fallback:
-- If leverage or liquidity data is unavailable, classify only the price/macro regime and list the missing inputs.
+回退规则：
+- 若杠杆或流动性数据不可用，仅判定价格/宏观机制并列出缺失输入。
 
-## Workflow
+## 工作流
 
-1. Define the universe, benchmark, horizon, and decision lens: allocation, hedge, trade, or risk review.
-2. Measure trend, breadth, realized volatility, drawdown, and correlation versus macro assets.
-3. Check leverage conditions using funding, basis, open interest, and liquidation evidence.
-4. Add liquidity and macro context, including stablecoins, dollar, rates, and risk appetite.
-5. Classify the regime and map it to actions: accumulate, hold, hedge, reduce, or wait.
+1. 确定资产范围、基准、时间范围及决策视角：配置、对冲、交易或风险审查。
+2. 衡量趋势、广度、实现波动率、回撤及与宏观资产的相关性。
+3. 使用资金费率、基差、持仓量及爆仓证据检查杠杆状况。
+4. 补充流动性和宏观背景，包括稳定币、美元、利率及风险偏好。
+5. 判定市场机制并映射为操作：建仓、持有、对冲、减仓或观望。
 
-## Output Format
+## 输出格式
 
-1. **Regime Call**
-2. **Market Dashboard**
-3. **Leverage / Liquidity**
-4. **Macro Linkage**
-5. **Scenario Triggers**
-6. **Data Used**
+1. **机制判定**
+2. **市场仪表盘**
+3. **杠杆 / 流动性**
+4. **宏观联动**
+5. **情景触发条件**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not claim live market state without timestamped data.
-- Do not treat one exchange or one token as the whole market.
-- Separate regime evidence from trade recommendations.
+- 不得在没有带时间戳数据的情况下声称实时市场状态。
+- 不得将单一交易所或单一代币视为整个市场。
+- 将机制证据与交易建议分开呈现。
