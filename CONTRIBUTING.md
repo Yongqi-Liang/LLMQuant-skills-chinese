@@ -1,38 +1,38 @@
-# Contributing to LLMQuant Skills
+# LLMQuant Skills 贡献指南
 
-LLMQuant Skills is the workflow layer for LLMQuant Data. Contributions should make agents better at using LLMQuant Data with clear reasoning, explicit evidence, and reproducible outputs.
+LLMQuant Skills 是 LLMQuant Data 的工作流层。贡献的目标是让 Agent 更善于使用 LLMQuant Data——推理清晰、证据明确、输出可复现。
 
-## What To Contribute
+## 贡献内容
 
-- **Category routers**: `skills/llmquant-*/SKILL.md` files that choose the right workflow and enforce the LLMQuant Data contract.
-- **Workflow files**: repeatable research, trading, risk, or portfolio procedures under `workflows/*.md`.
-- **Scripts**: optional executable helpers under a category `scripts/` directory.
-- **Assets**: templates, sample output skeletons, and reusable resources under `assets/`.
+- **类别路由**：`skills/llmquant-*/SKILL.md` 文件，负责选择正确的工作流并执行 LLMQuant Data 契约。
+- **工作流文件**：`workflows/*.md` 下可复现的研究、交易、风控或组合管理流程。
+- **脚本**：类别目录下 `scripts/` 中的可选可执行辅助脚本。
+- **资产**：`assets/` 下的模板、示例输出骨架及可复用资源。
 
-## Required Contract
+## 必要契约
 
-Every category skill must include:
+每个类别 Skill 必须包含：
 
-- A folder name beginning with `llmquant-`.
-- A root `SKILL.md` router with `input_data_source: LLMQuant Data` frontmatter.
-- A workflow index linking every workflow in `workflows/`.
-- Routing rules that tell the agent to load only the relevant workflow.
-- Data requirements described as natural-language capabilities, not exact MCP tool names in frontmatter.
-- Freshness rules: dates, filing periods, observation dates, and stale-data notices must be reported.
-- Fallback rules for missing coverage, unsupported tickers, unavailable filing sections, or stale data.
-- Guardrails that prevent invented data or unsupported conclusions.
+- 文件夹名以 `llmquant-` 开头。
+- 根目录下的 `SKILL.md` 路由文件，frontmatter 中声明 `input_data_source: LLMQuant Data`。
+- 工作流索引，链接 `workflows/` 中的每个工作流。
+- 路由规则，指引 Agent 仅加载相关的工作流。
+- 数据需求以自然语言能力描述，而非在 frontmatter 中写死具体的 MCP 工具名称。
+- 时效性规则：必须报告日期、报告期间、观察日期及数据过期提示。
+- 回退规则：覆盖缺失、不支持的标的、无法获取的报告章节或数据过期时的处理方式。
+- 防护栏：防止编造数据或得出无依据的结论。
 
-Every workflow file must include:
+每个工作流文件必须包含：
 
-- The user intent it handles.
-- Required and optional data capabilities, including future LLMQuant Data capabilities if the workflow needs data not yet exposed.
-- A repeatable procedure.
-- A structured output format.
-- Clear data and reasoning boundaries.
+- 它所处理的用户意图。
+- 必需和可选的数据能力，包括工作流需要但 LLMQuant Data 尚未提供的未来能力。
+- 可复现的执行流程。
+- 结构化的输出格式。
+- 清晰的数据与推理边界。
 
-## File Layout
+## 文件布局
 
-Use one folder per category skill:
+每个类别 Skill 使用一个独立文件夹：
 
 ```text
 skills/llmquant-<category>/
@@ -43,74 +43,69 @@ skills/llmquant-<category>/
 └── assets/
 ```
 
-The category folder is the install/import unit for Claude Code, Claude.ai, Cursor, and Codex. Do not add standalone `SKILL.md` files outside `skills/llmquant-*/`.
+该类别文件夹是 Claude Code、Claude.ai、Cursor 和 Codex 的安装/导入单元。不要在 `skills/llmquant-*/` 之外添加独立的 `SKILL.md` 文件。
 
-Use `templates/SKILL_TEMPLATE.md` for a category router and `templates/WORKFLOW_TEMPLATE.md` for a workflow file. For Chinese documentation, maintain the repo-level `README.zh-CN.md` first rather than duplicating every workflow.
+使用 `templates/SKILL_TEMPLATE.md` 作为类别路由模板，使用 `templates/WORKFLOW_TEMPLATE.md` 作为工作流文件模板。中文文档请优先维护仓库级的 `README.zh-CN.md`，而非为每个工作流单独复制一份中文翻译。
 
-## Quality Bar
+## 质量标准
 
-Good workflows are narrow, repeatable, and evidence-first. A reviewer should be able to answer:
+优秀的工作流应当范围明确、可复现、以证据为先。审阅者应能回答以下问题：
 
-- What question does this workflow answer?
-- Which data capabilities does it need?
-- What order should the agent retrieve or request those data inputs in?
-- What evidence must be shown in the final answer?
-- What should the agent do when data is missing?
-- What should the output look like?
+- 这个工作流回答什么问题？
+- 需要哪些数据能力？
+- Agent 应按什么顺序获取或请求这些数据输入？
+- 最终答案中必须展示哪些证据？
+- 数据缺失时 Agent 应如何处理？
+- 输出应该是什么样的？
 
-Avoid vague prompts, generic investment advice, or workflows that rely on unstated data.
+避免模糊的提示词、笼统的投资建议，或依赖未声明数据的工作流。
 
-## Pull Request Checklist
+## Pull Request 检查清单
 
-- [ ] Category folder is named `llmquant-*`.
-- [ ] Root `SKILL.md` exists and routes to the workflow.
-- [ ] Workflow file added or updated under `workflows/`.
-- [ ] `input_data_source: LLMQuant Data` is present.
-- [ ] Required data capabilities are described in natural language.
-- [ ] Missing or future data capabilities are explicitly named.
-- [ ] Freshness and fallback behavior are explicit.
-- [ ] Output format is structured.
-- [ ] README tables are updated if a category or major workflow is added, removed, or renamed.
+- [ ] 类别文件夹命名为 `llmquant-*`。
+- [ ] 根目录存在 `SKILL.md` 并路由到工作流。
+- [ ] 工作流文件已在 `workflows/` 下添加或更新。
+- [ ] 包含 `input_data_source: LLMQuant Data`。
+- [ ] 必需的数据能力以自然语言描述。
+- [ ] 缺失或未来的数据能力已明确标注。
+- [ ] 时效性和回退行为已明确说明。
+- [ ] 输出格式为结构化格式。
+- [ ] 如新增、删除或重命名类别或重要工作流，README 表格已更新。
 
-## PR Title & Commit Conventions
+## PR 标题与提交规范
 
-This repo follows [Conventional Commits](https://www.conventionalcommits.org/).
-A GitHub Action (`.github/workflows/pr-title.yml`) validates every PR title. If
-the repo squash-merges, the PR title becomes the squash commit subject on
-`main`, so only the PR title needs to follow the format — individual commits on
-a branch are unconstrained.
+本仓库遵循 [Conventional Commits](https://www.conventionalcommits.org/) 规范。
+GitHub Action（`.github/workflows/pr-title.yml`）会校验每个 PR 标题。如果仓库使用 squash merge，PR 标题将成为 `main` 分支上的 squash commit subject，因此只需 PR 标题遵循格式——分支上的各个 commit 不做强制要求。
 
-### Format
+### 格式
 
 ```
 <type>(<scope>): <subject>
 ```
 
-### Types
+### 类型
 
-| type       | when to use                                                        |
-|------------|--------------------------------------------------------------------|
-| `feat`     | new category skill, new workflow, new capability                   |
-| `fix`      | bug in a skill, workflow, or script; broken link; misrouting       |
-| `docs`     | README, CONTRIBUTING, comments, templates                          |
-| `refactor` | restructure an existing skill/workflow without changing behavior   |
-| `chore`    | repo maintenance, scaffolding, dependency bumps                    |
-| `ci`       | workflows, lint config                                             |
-| `style`    | formatting, whitespace, pure layout                               |
+| 类型         | 使用场景                                                      |
+|--------------|---------------------------------------------------------------|
+| `feat`       | 新增类别 Skill、工作流或数据能力                               |
+| `fix`        | Skill、工作流或脚本中的 bug；损坏的链接；路由错误               |
+| `docs`       | README、CONTRIBUTING、注释、模板                               |
+| `refactor`   | 重构现有 Skill/工作流，不改变行为                               |
+| `chore`      | 仓库维护、脚手架搭建、依赖升级                                  |
+| `ci`         | 工作流配置、lint 配置                                          |
+| `style`      | 格式调整、空白字符、纯排版变更                                  |
 
-### Scopes (optional)
+### 作用域（可选）
 
-A category short name (the `llmquant-*` folder without the prefix, e.g.
-`options`, `macro`, `crypto`) or a cross-cutting area: `templates` · `ci` ·
-`infra` · `readme` · `zh-CN`. Small PRs may omit a scope.
+类别简称（`llmquant-*` 文件夹去掉前缀，如 `options`、`macro`、`crypto`），或跨领域标识：`templates` · `ci` · `infra` · `readme` · `zh-CN`。小型 PR 可省略作用域。
 
-### Subject
+### 主题
 
-- Imperative mood, lowercase first word (`add`, not `Added`).
-- No trailing period.
-- Fit within ~72 characters.
+- 使用祈使语气，首字母小写（`add`，而非 `Added`）。
+- 末尾不加句号。
+- 控制在约 72 个字符以内。
 
-### Examples
+### 示例
 
 - `feat(options): add iv-term-structure workflow`
 - `fix(macro): correct fallback when CPI release is missing`
