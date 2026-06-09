@@ -1,4 +1,70 @@
-# LLMQuant Skills 贡献指南
+# LLMQuant Skills 中文翻译贡献指南
+
+本仓库是 [LLMQuant/skills](https://github.com/LLMQuant/skills) 的中文翻译镜像，目标是将所有 Skill 文档、工作流及贡献文档翻译为简体中文，使中文用户能够无障碍地使用 LLMQuant Skills 进行金融分析。
+
+## 翻译范围
+
+| 优先级 | 内容                         | 说明                                         |
+|--------|------------------------------|----------------------------------------------|
+| P0     | `CONTRIBUTING.md`            | 贡献指南（本文件）                            |
+| P1     | `skills/*/SKILL.md`          | 各类别 Skill 路由文件                         |
+| P2     | `skills/*/workflows/*.md`    | 各工作流文件                                  |
+| P3     | `templates/*.md`             | 模板文件                                      |
+| P4     | `.github/` 下的模板与配置文档 | Issue/PR 模板等                               |
+
+## 翻译原则
+
+1. **直接替换**：翻译后直接覆盖原英文文件，不另建 `.zh-CN.md` 副本。
+2. **术语保留英文**：以下内容保持原文不译：
+   - 代码标识符：路径、文件名、命令、frontmatter 字段（如 `input_data_source`）
+   - 产品名称：LLMQuant Data、LLMQuant Skills、Claude Code、Cursor、Codex 等
+   - 协议/规范名称：Conventional Commits、MCP、OWASP 等
+   - 金融代码：ticker 符号（如 `SPY`、`AAPL`）、合约代码
+3. **术语统一**：同一术语在全文中保持一致，参考下方术语表。
+4. **结构不变**：不改变原文的 Markdown 结构、链接、图片引用。
+5. **意译优先**：在准确的前提下，使用自然流畅的中文表达，避免逐词直译。
+
+## 术语表
+
+| 英文                   | 中文             | 备注                                  |
+|------------------------|------------------|---------------------------------------|
+| Skill                  | Skill            | 不译为"技能"，保持英文                 |
+| Workflow               | 工作流           |                                       |
+| Category router        | 类别路由         |                                       |
+| Frontmatter            | frontmatter      | 保持英文                              |
+| Data capability        | 数据能力         |                                       |
+| Evidence contract      | 证据契约         |                                       |
+| Fallback               | 回退             |                                       |
+| Guardrail              | 防护栏           |                                       |
+| Stale data             | 过期数据         |                                       |
+| Ticker                 | 标的 / ticker    | 视上下文选用                           |
+| Agent                  | Agent            | 不译为"智能体"，保持英文               |
+| Observation date       | 观察日期         |                                       |
+| Filing period          | 报告期间         |                                       |
+
+## 翻译工作流
+
+1. **认领任务**：在 Issue 中标注要翻译的文件，避免重复劳动。
+2. **翻译文件**：按上述原则将英文内容替换为中文。
+3. **自检**：
+   - 通读译文，确认术语一致性。
+   - 确认代码块、链接、frontmatter 未被翻译。
+   - 确认 Markdown 格式正确。
+4. **提交 PR**：
+   - 分支命名：`zh-CN/<文件名>`，如 `zh-CN/contributing`。
+   - PR 标题格式：`docs(zh-CN): translate <文件名> to Chinese`。
+   - 在 PR 描述中注明对应的 Issue 编号。
+5. **审阅合并**：至少一位审阅者确认术语准确、行文流畅后合并。
+
+## 注意事项
+
+- 金融领域术语力求准确，有疑问时在 PR 中讨论，不要凭直觉翻译。
+- 若原文有更新，译者需同步更新译文，保持与上游仓库一致。
+- 本贡献指南本身也是翻译对象，翻译完成后此章节将更新为正式的翻译规范引用。
+
+---
+
+# LLMQuant Skills 官方贡献指南
 
 LLMQuant Skills 是 LLMQuant Data 的工作流层。贡献的目标是让 Agent 更善于使用 LLMQuant Data——推理清晰、证据明确、输出可复现。
 
