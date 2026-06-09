@@ -2,11 +2,11 @@
 
 <img src="assets/llmquant-skills-logo.svg" alt="LLMQuant Skills" width="128" />
 
-<h1>LLMQuant Skills</h1>
+<h1>LLMQuant Skills - Chinese</h1>
 
-<p><strong>Reusable finance Agent Skills — grounded in <a href="https://github.com/LLMQuant/data-mcp">LLMQuant Data</a></strong></p>
+<p><strong>面向金融的可复用 Agent Skills，数据都来自 <a href="https://github.com/LLMQuant/data-mcp">LLMQuant Data</a></strong></p>
 
-<p><strong>English</strong> · <a href="README.zh-CN.md">简体中文</a></p>
+<p><strong>简体中文</strong></p>
 
 <p>
   <a href="https://github.com/LLMQuant/skills/stargazers"><img src="https://img.shields.io/github/stars/LLMQuant/skills?style=flat" alt="GitHub stars" /></a>
@@ -23,32 +23,29 @@ npx skills add LLMQuant/skills      # Claude Code · Codex · Cursor · Antigrav
 ```
 
 > [!TIP]
-> 18 category skills — equities, options, macro, crypto, credit, portfolio, risk, and more — that route an agent to the right finance workflow and keep every claim grounded in LLMQuant Data.
+> 一共 18 个大类 skill，覆盖股票、期权、宏观、加密、信用、组合、风险等。它们会把 Agent 带到合适的金融分析流程，并保证每个结论都有 LLMQuant Data 作为依据。
 
-## Contents
+## 目录
 
-- [Contents](#contents)
-- [Overview](#overview)
-- [Category Skills](#category-skills)
-- [Install](#install)
-  - [Recommended: `npx skills add`](#recommended-npx-skills-add)
-  - [Native plugin install](#native-plugin-install)
+- [概览](#概览)
+- [大类 Skills](#大类-skills)
+- [安装](#安装)
+  - [推荐 `npx skills add`](#推荐-npx-skills-add)
+  - [原生插件安装](#原生插件安装)
 - [LLMQuant Data](#llmquant-data)
-- [Contributing](#contributing)
-- [License](#license)
-- [Star History](#star-history)
+- [贡献](#贡献)
+- [许可](#许可)
 
-## Overview
+## 概览
 
 <div align="center">
-  <img src="assets/llmquant-skills-header.png" alt="LLMQuant Skills — finance Agent Skills grounded in LLMQuant Data" width="820" />
+  <img src="assets/llmquant-skills-header.png" alt="LLMQuant Skills，数据都来自 LLMQuant Data 的金融 Agent Skills" width="820" />
 </div>
 
-
-This repository is a **skill catalog**. The install/import unit is a category folder under `skills/llmquant-*` — each one a router `SKILL.md` that indexes `workflows/*.md`, tells the agent which workflow to load, and enforces the LLMQuant Data evidence contract. It is not an isolated `SKILL.md` and not a single workflow file.
+这个仓库是一个 skill 目录。安装和使用的基本单位，是 `skills/llmquant-*` 下的一个大类文件夹。每个大类都有一个 `SKILL.md` 当入口：它列出这个大类里的所有流程（`workflows/*.md`），告诉 Agent 该用哪个，并要求所有外部事实都来自 LLMQuant Data。它不是一个单独的 `SKILL.md`，也不是单个流程文件。
 
 <details>
-<summary><strong>Repository layout</strong></summary>
+<summary><strong>仓库结构</strong></summary>
 
 ```text
 skills/
@@ -62,9 +59,9 @@ skills/
 │   └── workflows/
 └── ...
 
-.claude-plugin/     # Claude Code plugin + marketplace manifests
-.codex-plugin/      # Codex plugin manifest
-.cursor-plugin/     # Cursor plugin manifest
+.claude-plugin/     # Claude Code 插件 + marketplace 清单
+.codex-plugin/      # Codex 插件清单
+.cursor-plugin/     # Cursor 插件清单
 assets/
 README.md
 README.zh-CN.md
@@ -72,130 +69,130 @@ README.zh-CN.md
 
 </details>
 
-## Category Skills
+## 大类 Skills
 
-| Skill | Scope | Key workflows |
+| Skill | 范围 | 主要 workflows |
 |---|---|---|
-| [`llmquant-data`](skills/llmquant-data) | LLMQuant Data primitives and source-grounded research. | 10-K risk review, 13F holders, U.S. macro snapshot, macro brief |
-| [`llmquant-equities`](skills/llmquant-equities) | Equity research, comparison, valuation, catalysts, and sell discipline. | Five-lens analysis, equity compare, research memo, merger arb, take-profit lab |
-| [`llmquant-etfs`](skills/llmquant-etfs) | ETF holdings, overlap, concentration, and exposure analysis. | ETF overlap report |
-| [`llmquant-options`](skills/llmquant-options) | Options, volatility, Greeks, unusual activity, and option backtests. | IV rank, strategy builder, Greeks dashboard, P&L simulator, volatility surface |
-| [`llmquant-equity-derivatives`](skills/llmquant-equity-derivatives) | Single-stock derivative and hybrid security research. | Single-stock derivative playbook, convertible and warrant lens |
-| [`llmquant-commodities`](skills/llmquant-commodities) | Commodity spot, futures curve, inventory, and macro linkage work. | Commodity market lens, futures curve monitor |
-| [`llmquant-crypto`](skills/llmquant-crypto) | Crypto regime, token research, perpetual funding, basis, and leverage monitoring. | Crypto market regime, token research, perp funding monitor |
-| [`llmquant-prediction-markets`](skills/llmquant-prediction-markets) | Event odds, prediction-market contracts, probability gaps, and cross-venue arb review. | Event probability brief, arb watch, probability vs options pricing |
-| [`llmquant-macro`](skills/llmquant-macro) | Macro dashboards, central-bank previews, liquidity, growth, inflation, and portfolio impact. | Global macro dashboard, Fed policy preview, macro-to-portfolio impact |
-| [`llmquant-credit`](skills/llmquant-credit) | Issuer credit, spread regimes, high-yield stress, refinancing, and default risk. | Issuer credit risk review, credit spread regime, high-yield stress monitor |
-| [`llmquant-rates-fx`](skills/llmquant-rates-fx) | Rates, yield curves, central-bank divergence, FX carry, and currency risk. | Yield curve trade lens, central-bank divergence, FX carry dashboard |
-| [`llmquant-events`](skills/llmquant-events) | Earnings, M&A, regulatory, legal, policy, and catalyst event monitoring. | Earnings event brief, M&A event tracker, regulatory risk monitor |
-| [`llmquant-portfolio`](skills/llmquant-portfolio) | Company profiles, thesis tracking, watchlists, alerts, and themes. | Company profile, thesis tracker, theme research, watchlist monitor, alert manager |
-| [`llmquant-portfolio-lab`](skills/llmquant-portfolio-lab) | Portfolio exposure maps, what-if simulations, and virtual portfolio states. | Portfolio exposure map, portfolio what-if simulator |
-| [`llmquant-risk`](skills/llmquant-risk) | Risk regime, hedging, panic scoring, and research quality checks. | Fear score, VIX status, hedge advisor, research health check |
-| [`llmquant-strategies`](skills/llmquant-strategies) | Hedge-fund and PM strategy playbooks. | Equity long/short, long-biased, event-driven, macro, quant, multi-strategy |
-| [`llmquant-market-intelligence`](skills/llmquant-market-intelligence) | Reusable market utilities and signal views. | Macro view, market sentiment, event probability signals |
-| [`llmquant-investor-lenses`](skills/llmquant-investor-lenses) | Investor-style reasoning overlays using LLMQuant Data evidence. | Buffett, Graham, Munger, Lynch, Fisher, Burry, Ackman, Damodaran, and more |
+| [`llmquant-data`](skills/llmquant-data) | LLMQuant Data 基础数据和有来源的研究。 | 10-K 风险审查、13F 持有人、美国宏观快照、宏观简报 |
+| [`llmquant-equities`](skills/llmquant-equities) | 股票研究、横向比较、估值、催化剂和卖出纪律。 | Five-lens analysis、equity compare、research memo、merger arb、take-profit lab |
+| [`llmquant-etfs`](skills/llmquant-etfs) | ETF 持仓、重叠、集中度和敞口分析。 | ETF overlap report |
+| [`llmquant-options`](skills/llmquant-options) | 期权、波动率、Greeks、异常交易和期权回测。 | IV rank、strategy builder、Greeks dashboard、P&L simulator、volatility surface |
+| [`llmquant-equity-derivatives`](skills/llmquant-equity-derivatives) | 单只股票的衍生品和混合证券研究。 | Single-stock derivative playbook、convertible and warrant lens |
+| [`llmquant-commodities`](skills/llmquant-commodities) | 商品现货、期货曲线、库存和宏观联动。 | Commodity market lens、futures curve monitor |
+| [`llmquant-crypto`](skills/llmquant-crypto) | 加密市场行情、代币研究、永续资金费率、基差和杠杆监控。 | Crypto market regime、token research、perp funding monitor |
+| [`llmquant-prediction-markets`](skills/llmquant-prediction-markets) | 事件赔率、预测市场合约、概率差和跨平台套利检查。 | Event probability brief、arb watch、probability vs options pricing |
+| [`llmquant-macro`](skills/llmquant-macro) | 宏观面板、央行会议前瞻、流动性、增长、通胀和组合影响。 | Global macro dashboard、Fed policy preview、macro-to-portfolio impact |
+| [`llmquant-credit`](skills/llmquant-credit) | 发行人信用、利差行情、高收益压力、再融资和违约风险。 | Issuer credit risk review、credit spread regime、high-yield stress monitor |
+| [`llmquant-rates-fx`](skills/llmquant-rates-fx) | 利率、收益率曲线、央行分化、外汇 carry 和汇率风险。 | Yield curve trade lens、central-bank divergence、FX carry dashboard |
+| [`llmquant-events`](skills/llmquant-events) | 财报、并购、监管、法律、政策和催化剂事件跟踪。 | Earnings event brief、M&A event tracker、regulatory risk monitor |
+| [`llmquant-portfolio`](skills/llmquant-portfolio) | 公司档案、观点跟踪、关注列表、提醒和主题研究。 | Company profile、thesis tracker、theme research、watchlist monitor、alert manager |
+| [`llmquant-portfolio-lab`](skills/llmquant-portfolio-lab) | 组合敞口图、假设推演和虚拟组合状态。 | Portfolio exposure map、portfolio what-if simulator |
+| [`llmquant-risk`](skills/llmquant-risk) | 风险行情、对冲、恐慌打分和研究质量检查。 | Fear score、VIX status、hedge advisor、research health check |
+| [`llmquant-strategies`](skills/llmquant-strategies) | 对冲基金和基金经理的策略手册。 | Equity long/short、long-biased、event-driven、macro、quant、multi-strategy |
+| [`llmquant-market-intelligence`](skills/llmquant-market-intelligence) | 可复用的市场工具和信号视图。 | Macro view、market sentiment、event probability signals |
+| [`llmquant-investor-lenses`](skills/llmquant-investor-lenses) | 用 LLMQuant Data 当证据的投资大师视角。 | Buffett、Graham、Munger、Lynch、Fisher、Burry、Ackman、Damodaran 等 |
 
-## Install
+## 安装
 
-### Recommended: `npx skills add`
+### 推荐 `npx skills add`
 
-One command, and it works across Claude Code, Codex, Cursor, Antigravity, Gemini, and other agents.
+一条命令，适用于 Claude Code、Codex、Cursor、Antigravity、Gemini 等多种 Agent。
 
 > [!TIP]
-> Already inside an agent? Just run `npx skills add LLMQuant/skills` — it auto-detects the host and installs to the right place.
+> 已经在某个 Agent 里了？直接运行 `npx skills add LLMQuant/skills`，它会自己认出当前环境，装到该装的位置。
 
 ```bash
-# Pick skills interactively for the current agent
+# 在当前 Agent 里挑选要装的 skill
 npx skills add LLMQuant/skills
 
-# Install all category skills globally
+# 全局安装全部大类 skill
 npx skills add LLMQuant/skills -g --all
 
-# Install specific skills
+# 只装其中几个
 npx skills add LLMQuant/skills -g --skill llmquant-options llmquant-equities
 
-# Target a specific agent
+# 指定某个 Agent
 npx skills add LLMQuant/skills -a codex
 ```
 
-Manage installed skills with `npx skills list`, `npx skills update`, and `npx skills remove`. Then ask the agent `What skills are available?`, or invoke one directly, e.g. `/llmquant-options`.
+用 `npx skills list`、`npx skills update`、`npx skills remove` 管理已经装好的 skill。装好后在 Agent 里问一句 `What skills are available?`，或者直接调用，比如 `/llmquant-options`。
 
 <div align="center">
-  <img src="assets/skills-add-screenshot.png" alt="Selecting LLMQuant skills with npx skills add" width="720" />
+  <img src="assets/skills-add-screenshot.png" alt="用 npx skills add 挑选 LLMQuant skills" width="720" />
 </div>
 
-### Native plugin install
+### 原生插件安装
 
-The whole repository is also packaged as a single plugin that bundles every category skill, for agents with a native plugin system.
+整个仓库也打包成了一个插件，一次就能装上全部大类 skill，适合自带插件系统的 Agent。
 
-**Claude Code** — add this repo as a plugin marketplace, then install the bundle:
+**Claude Code**：把这个仓库加成插件市场，再装这个插件包：
 
 ```text
 /plugin marketplace add LLMQuant/skills
 /plugin install llmquant-skills@llmquant
 ```
 
-**Codex** — the repo ships `.codex-plugin/plugin.json`, so it is plugin-ready. To install today, use the CLI above (`npx skills add LLMQuant/skills -a codex`), or install a single category skill via the skill installer:
+**Codex**：仓库里带了 `.codex-plugin/plugin.json`，已经可以当插件用。现在想装的话，用上面那条命令（`npx skills add LLMQuant/skills -a codex`），或者用 skill installer 装单个大类 skill：
 
 ```text
 $skill-installer install https://github.com/LLMQuant/skills/tree/main/skills/llmquant-options
 ```
 
-**Cursor · Antigravity · other agents** — use the recommended CLI with the matching agent, e.g. `npx skills add LLMQuant/skills -a cursor` or `-a antigravity`.
+**Cursor、Antigravity、其他 Agent**：用上面推荐的命令，把 agent 名字换成对应的就行，比如 `npx skills add LLMQuant/skills -a cursor` 或 `-a antigravity`。
 
 ## LLMQuant Data
 
-These skills are the workflow layer for **[LLMQuant Data](https://github.com/LLMQuant/data-mcp)** — one MCP server that feeds prices, filings, 13F, macro, ETF holdings, crypto, and more to your agents. **Configure once, and every agent in your stack gets the data.**
+这些 skill 是 **[LLMQuant Data](https://github.com/LLMQuant/data-mcp)** 的流程层。LLMQuant Data 是一个 MCP server，把价格、财报、13F、宏观、ETF 持仓、加密等数据，送到你的各个 Agent。**配置一次，你用的每个 Agent 都能用上这些数据。**
 
 <div align="center">
-  <img src="assets/ecosystem.png" alt="LLMQuant Data, everywhere your agent runs — Claude Code, Cursor, Codex, Gemini, and more" width="800" />
+  <img src="assets/ecosystem.png" alt="LLMQuant Data 跟着你的 Agent 到处可用，包括 Claude Code、Cursor、Codex、Gemini 等" width="800" />
 </div>
 
-**Set it up the AI-native way** — paste this to your agent:
+**用 AI 的方式装**，把下面这句话发给你的 Agent：
 
 ```text
 Install the LLMQuant data-mcp server in this environment by following https://github.com/LLMQuant/data-mcp
 ```
 
-Or add it by hand:
+或者自己手动加：
 
 ```bash
 claude mcp add llmquant-data -e LLMQUANT_API_KEY=your_api_key -- npx -y @llmquant/data-mcp
 ```
 
 > [!NOTE]
-> Grab an API key and the full multi-agent setup at **[docs.llmquantdata.com](https://docs.llmquantdata.com)** and **[`LLMQuant/data-mcp`](https://github.com/LLMQuant/data-mcp)**.
+> 申请 API key、以及多个 Agent 的完整配置说明，见 **[docs.llmquantdata.com](https://docs.llmquantdata.com)** 和 **[`LLMQuant/data-mcp`](https://github.com/LLMQuant/data-mcp)**。
 
-Skills describe the data they need in natural language and let the agent route to whatever LLMQuant Data exposes, so coverage can grow without editing any skill. Without `llmquant-data` connected, skills still run as reusable workflows — the agent asks for user-provided data and clearly labels anything missing. The full evidence contract is in [CONTRIBUTING.md](CONTRIBUTING.md).
+skill 会用大白话说明自己需要什么数据，让 Agent 去对接 LLMQuant Data 当前提供的能力，所以数据范围可以慢慢变大，而不用改任何 skill。就算没连 `llmquant-data`，skill 也能当普通流程用：这时 Agent 会让你提供数据，并把缺的部分标清楚。完整的数据使用规则见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
 <div align="center">
-  <a href="https://llmquantdata.com/agent"><img src="assets/playground.png" alt="LLMQuant Agent Playground — Data MCP and Skills enabled" width="800" /></a>
+  <a href="https://llmquantdata.com/agent"><img src="assets/playground.png" alt="LLMQuant Agent Playground，已开启 Data MCP 和 Skills" width="800" /></a>
   <br/>
-  <strong><a href="https://llmquantdata.com/agent">Open the LLMQuant Agent Playground →</a></strong>
+  <strong><a href="https://llmquantdata.com/agent">打开 LLMQuant Agent Playground →</a></strong>
 </div>
 
 <details>
-<summary><strong>▶ Watch the playground demo</strong></summary>
+<summary><strong>▶ 看一段 playground 演示</strong></summary>
 <br/>
 <div align="center">
-  <img src="assets/llmquant-data-agentplayground-demo.gif" alt="LLMQuant Agent Playground demo — Data MCP and Skills in action" width="800" />
+  <img src="assets/llmquant-data-agentplayground-demo.gif" alt="LLMQuant Agent Playground 演示，Data MCP 和 Skills 实际运行" width="800" />
 </div>
 </details>
 
-## Contributing
+## 贡献
 
-Add or update workflows inside the relevant category (`skills/llmquant-<category>/` → `SKILL.md` + `workflows/` + `scripts/` + `assets/`):
+在对应的大类里新增或修改流程。目录结构是 `skills/llmquant-<category>/`，里面有 `SKILL.md`、`workflows/`、`scripts/`、`assets/`：
 
-- Category folders must be named `llmquant-*`, and `SKILL.md` is the router that indexes every workflow.
-- Workflow files hold the repeatable procedure, output format, data contract, and guardrails.
-- Describe data needs as natural-language capabilities, not exact MCP tool names.
-- Update this README when a category or major workflow is added, removed, or renamed.
+- 大类文件夹必须以 `llmquant-` 开头。`SKILL.md` 是入口，要列出这个大类的每一个流程。
+- 流程文件里写清楚：可重复的操作步骤、输出长什么样、需要哪些数据、有哪些限制。
+- 把需要的数据用大白话说清楚，不要在里面写死具体的 MCP 工具名。
+- 新增、删除或重命名一个大类或主要流程时，记得更新这个 README。
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for the full contract and quality bar.
+完整规则和质量要求见 [CONTRIBUTING.md](CONTRIBUTING.md)。
 
-## License
+## 许可
 
-MIT — see [LICENSE](LICENSE). Listing a project here does not change the license of any linked code or artifact.
+采用 MIT 许可，见 [LICENSE](LICENSE)。在这里收录某个项目，不会改变它自己代码或文件的许可。
 
 <div align="center">
   <br/>
@@ -203,7 +200,7 @@ MIT — see [LICENSE](LICENSE). Listing a project here does not change the licen
   <br/><br/>
   <strong><a href="https://llmquant.com">LLMQuant</a></strong>
   <br/>
-  <sub>Open-source community for AI, LLMs, and quantitative finance.</sub>
+  <sub>面向 AI、大模型和量化金融的开源社区。</sub>
   <br/><br/>
   <a href="https://llmquant.com">Website</a> ·
   <a href="https://github.com/LLMQuant">GitHub</a> ·
