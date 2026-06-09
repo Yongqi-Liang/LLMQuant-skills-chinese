@@ -1,48 +1,48 @@
-# Convertible And Warrant Lens
+# 可转债与权证透视
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks about convertible bonds, warrants, rights, PIPE warrants, SPAC warrants, or other equity-linked hybrid securities.
+当用户询问可转债、权证、配股权、PIPE 权证、SPAC 权证或其他股权挂钩混合证券时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required or future:
-- convertible security term data: coupon, maturity, conversion price, conversion ratio, call/put provisions, and rank.
-- warrant term data: strike, expiry, exercise style, redemption triggers, and anti-dilution clauses.
-- equity price history: underlying price, volatility, liquidity, and drawdowns.
-- corporate action data: splits, dividends, mergers, tender offers, and redemptions.
-- credit spread and issuer credit context: issuer credit spread, bond price, and default-risk proxy.
-- implied-volatility history: implied volatility context for embedded optionality.
+必需或未来：
+- 可转债条款数据：票息、到期日、转换价格、转换比率、赎回/回售条款及优先级。
+- 权证条款数据：行权价、到期日、行权方式、赎回触发条件及反稀释条款。
+- 股票价格历史：标的价格、波动率、流动性及回撤。
+- 公司行为数据：拆股、分红、并购、要约收购及赎回。
+- 信用利差及发行人信用背景：发行人信用利差、债券价格及违约风险代理。
+- 隐含波动率历史：嵌入期权性的隐含波动率背景。
 
-Optional:
-- SEC filing section retrieval
-- company fundamentals data
+可选：
+- SEC 报告章节检索
+- 公司基本面数据
 
-Freshness:
-- Report term sheet date, filing date, quote date, and underlying price timestamp.
+时效性：
+- 报告条款说明书日期、报告日期、报价日期及标的价格时间戳。
 
-Fallback:
-- If the term sheet is unavailable, state the missing contract terms and do not value the instrument.
+回退规则：
+- 若条款说明书不可用，说明缺失的合约条款，不得对该工具进行估值。
 
-## Workflow
+## 工作流
 
-1. Identify security type, issuer, ticker/CUSIP, term sheet fields, and user objective.
-2. Pull terms, underlying price, volatility, credit, corporate action, and filing evidence.
-3. Decompose the instrument into bond value, option value, dilution, call risk, and liquidity.
-4. Run upside/downside scenarios around conversion or exercise thresholds.
-5. Explain whether the instrument behaves more like credit, equity, or optionality.
+1. 识别证券类型、发行人、ticker/CUSIP、条款说明书字段及用户目标。
+2. 拉取条款、标的价格、波动率、信用、公司行为及报告证据。
+3. 将工具分解为债券价值、期权价值、稀释、赎回风险及流动性。
+4. 围绕转换或行权阈值运行上行/downside 情景。
+5. 说明该工具更像信用、股权还是期权性。
 
-## Output Format
+## 输出格式
 
-1. **Instrument Summary**
-2. **Terms That Matter**
-3. **Valuation Drivers**
-4. **Scenario Table**
-5. **Key Risks**
-6. **Data Used**
+1. **工具摘要**
+2. **关键条款**
+3. **估值驱动因素**
+4. **情景表**
+5. **关键风险**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not infer conversion, warrant, or redemption terms from memory.
-- Do not treat warrants or convertibles as equivalent to common stock.
-- Clearly flag dilution, call, liquidity, and credit risks.
+- 不得凭记忆推断转换、权证或赎回条款。
+- 不得将权证或可转债等同于普通股。
+- 明确标注稀释、赎回、流动性及信用风险。

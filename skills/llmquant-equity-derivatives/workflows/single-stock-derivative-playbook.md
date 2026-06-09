@@ -1,49 +1,49 @@
-# Single-Stock Derivative Playbook
+# 单股衍生品交易手册
 
-## Use When
+## 适用场景
 
-Use this workflow when the user wants to design or evaluate a listed option, structured payoff, hedge, or asymmetric single-stock derivative trade around one underlying equity.
+当用户希望围绕单一标的股票设计或评估上市期权、结构化收益、对冲或不对称单股衍生品交易时，使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required or future:
-- equity price history: underlying returns, realized volatility, drawdowns, and technical context.
-- option chain data: expirations, strikes, bid/ask, volume, open interest, and IV.
-- option Greeks data: delta, gamma, theta, vega, rho, and scenario Greeks.
-- implied-volatility history: IV rank, IV percentile, term structure, and skew.
-- corporate event data: earnings, investor days, regulatory decisions, and deal events.
-- borrow cost and short availability data: hard-to-borrow, short rebate, and availability where relevant.
+必需或未来：
+- 股票价格历史：标的收益率、实现波动率、回撤及技术面背景。
+- 期权链数据：到期日、行权价、买/卖价、成交量、持仓量及 IV。
+- 期权 Greeks 数据：delta、gamma、theta、vega、rho 及情景 Greeks。
+- 隐含波动率历史：IV 排名、IV 百分位、期限结构及偏斜。
+- 公司事件数据：财报、投资者日、监管决定及交易事件。
+- 借贷成本及做空可用性数据：难借券、做空回扣及可用性（相关时）。
 
-Optional:
-- SEC filing section retrieval
-- ticker-level 13F holder data
-- company fundamentals data
+可选：
+- SEC 报告章节检索
+- ticker 级别 13F 持有人数据
+- 公司基本面数据
 
-Freshness:
-- Report option quote timestamp, underlying price timestamp, event dates, and IV history window.
+时效性：
+- 报告期权报价时间戳、标的价格时间戳、事件日期及 IV 历史窗口。
 
-Fallback:
-- If option chain or Greek data is unavailable, state the missing LLMQuant Data input and do not recommend a contract.
+回退规则：
+- 若期权链或 Greeks 数据不可用，说明缺失的 LLMQuant Data 输入，不得推荐具体合约。
 
-## Workflow
+## 工作流
 
-1. Define market view, time horizon, risk budget, max loss, and catalyst path.
-2. Pull underlying price, volatility, option chain, Greeks, event, and borrow data.
-3. Compare candidate payoffs: outright option, vertical, calendar, diagonal, collar, put spread, or ratio structure.
-4. Stress test price, volatility, time decay, and event outcomes.
-5. Select the cleanest structure or explain why no derivative is justified.
+1. 确定市场观点、时间范围、风险预算、最大亏损及催化剂路径。
+2. 拉取标的价格、波动率、期权链、Greeks、事件及借贷数据。
+3. 比较候选收益结构：裸期权、垂直价差、日历价差、对角价差、领口、看跌价差或比率结构。
+4. 对价格、波动率、时间衰减及事件结果进行压力测试。
+5. 选择最优结构或说明为何没有合理的衍生品交易。
 
-## Output Format
+## 输出格式
 
-1. **Derivative View**
-2. **Best-Fit Structure**
-3. **Payoff And Greeks**
-4. **Scenario Table**
-5. **Risks**
-6. **Data Used**
+1. **衍生品观点**
+2. **最优结构**
+3. **收益与 Greeks**
+4. **情景表**
+5. **风险**
+6. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not fabricate option quotes, Greeks, or borrow rates.
-- Do not ignore bid/ask spread and liquidity.
-- Do not present a derivative as suitable for a specific person without knowing mandate and constraints.
+- 不得编造期权报价、Greeks 或借贷利率。
+- 不得忽略买卖价差和流动性。
+- 在不了解授权和约束条件的情况下，不得将衍生品呈现为适合特定个人。
