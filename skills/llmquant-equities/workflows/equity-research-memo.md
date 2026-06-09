@@ -1,84 +1,84 @@
 ---
 name: Equity Research Memo
-description: Compose filings, market data, ownership, and context into an evidence-first equity research memo using LLMQuant Data.
+description: 使用 LLMQuant Data 将报告、市场数据、所有权及背景整合为以证据为先的股票研究备忘录。
 input_data_source: LLMQuant Data
 pack: workflows
 ---
 
-# Equity Research Memo
+# 股票研究备忘录
 
-## Purpose
+## 目的
 
-Produce a structured equity research memo for a public company. This workflow composes filings, price history, institutional ownership, and knowledge context into a clear investment view.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for filings, market prices, 13F ownership, wiki context, and paper research. State which LLMQuant Data capabilities were used, cite returned dates or periods, and do not invent data that was not retrieved.
+为上市公司构建结构化的股票研究备忘录。此工作流将报告、价格历史、机构所有权及知识背景整合为清晰的投资观点。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- SEC filing discovery
-- SEC filing section retrieval
-- equity price history
-
-Optional data capabilities:
-- ticker-level 13F holder data
-- wiki knowledge search
-- paper research search
-
-Freshness:
-- Use the latest available 10-K or 10-Q unless the user specifies a period.
-- State filing dates, periods of report, price bar date range, and 13F ranking period.
-- Do not imply current ownership or real-time fundamentals unless the tool provides that snapshot.
-
-Fallback:
-- If a filing section is unavailable, name the missing section and continue with retrieved sections.
-- If 13F data has no holders in scope, state the universe limitation.
-
-Output:
-- Investment view
-- Business and filing evidence
-- Market and ownership context
-- Risks
-- Data used
+使用 **LLMQuant Data** 作为报告、市场价格、13F 所有权、维基背景及论文研究的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用返回日期或期间，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Clarify ticker, horizon, and whether the user wants bullish, bearish, or neutral framing.
-2. Read the latest relevant filing sections: business, risk factors, and MD&A.
-3. Pull price history for drawdown, trend, volatility, and dividend/split context.
-4. Pull 13F holders when sponsorship or crowding matters.
-5. Use wiki or paper tools only to define concepts or support industry context.
-6. Build the memo from retrieved evidence first, then interpretation.
+必需数据能力：
+- SEC 报告发现
+- SEC 报告章节检索
+- 股票价格历史
+
+可选数据能力：
+- ticker 级别 13F 持有人数据
+- 维基知识搜索
+- 论文研究搜索
+
+时效性：
+- 使用最新可用的 10-K 或 10-Q 报告，除非用户指定期间。
+- 注明报告日期、报告期间、价格区间及 13F 排名期间。
+- 除非工具提供实时快照，否则不得暗示当前所有权或实时基本面。
+
+回退规则：
+- 若某报告章节不可用，指明缺失章节并使用已获取章节继续。
+- 若 13F 数据中无范围内持有人，说明范围限制。
+
+输出：
+- 投资观点
+- 业务与报告证据
+- 市场与所有权背景
+- 风险
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Rating / View**: bullish, bearish, neutral, or watchlist.
-2. **Thesis Summary**: 3-5 evidence-backed bullets.
-3. **Business Quality**
-4. **Financial / Filing Evidence**
-5. **Market Context**
-6. **Ownership / Crowding**
-7. **Key Risks**
-8. **Variant Perception**
-9. **Data Used**
+1. 确认 ticker、时间范围，以及用户希望看多、看空还是中性框架。
+2. 读取最新相关报告章节：业务、风险因素及 MD&A。
+3. 拉取价格历史，用于回撤、趋势、波动率及分红/拆股背景。
+4. 当发起人情况或拥挤度重要时，拉取 13F 持有人。
+5. 仅在定义概念或支撑行业背景时使用维基或论文工具。
+6. 先基于获取的证据构建备忘录，再添加解读。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not provide a price target unless the user asks and valuation assumptions are explicit.
-- Do not mix filing evidence with memory.
-- Do not overstate 13F timeliness.
-- Do not present opinion as data.
+使用：
+
+1. **评级 / 观点**：看多、看空、中性或关注。
+2. **论点摘要**：3-5 条有证据支撑的要点。
+3. **业务质量**
+4. **财务 / 报告证据**
+5. **市场背景**
+6. **所有权 / 拥挤度**
+7. **关键风险**
+8. **差异化认知**
+9. **所用数据**
+
+---
+
+## 防护栏
+
+- 除非用户要求且估值假设明确，否则不得提供目标价。
+- 不得将报告证据与记忆混合。
+- 不得夸大 13F 数据的时效性。
+- 不得将观点呈现为数据。

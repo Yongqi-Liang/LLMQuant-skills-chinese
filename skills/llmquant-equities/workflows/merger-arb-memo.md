@@ -1,82 +1,82 @@
 ---
 name: Merger-Arb Memo
-description: Build a catalyst-bound merger-arbitrage memo using LLMQuant Data filings, prices, and ownership context.
+description: 使用 LLMQuant Data 报告、价格及所有权背景构建以催化剂为锚的并购套利备忘录。
 input_data_source: LLMQuant Data
 pack: workflows
 ---
 
-# Merger-Arb Memo
+# 并购套利备忘录
 
-## Purpose
+## 目的
 
-Create a deal memo that frames merger-arbitrage risk, spread context, regulatory and shareholder issues, financing, timing, downside, and evidence gaps.
-
----
-
-## Input Data Source
-
-Use **LLMQuant Data** as the input data source for company filings, price history, 13F ownership, and contextual research. State which LLMQuant Data capabilities were used, cite filing dates and price ranges, and do not invent data that was not retrieved.
+创建一份交易备忘录，框架化并购套利风险、价差背景、监管与股东问题、融资、时间线、downside 及证据缺口。
 
 ---
 
-## LLMQuant Data Contract
+## 输入数据来源
 
-Required data capabilities:
-- SEC filing discovery
-- SEC filing section retrieval
-- equity price history
-
-Optional data capabilities:
-- ticker-level 13F holder data
-- wiki knowledge search
-- paper research search
-
-Freshness:
-- State the filing date and period of report for each filing used.
-- State the price history range used for spread or downside context.
-- Do not claim a definitive current deal spread unless current deal terms and latest prices are retrieved or supplied by the user.
-
-Fallback:
-- If deal terms are not in retrieved filings, ask the user for terms or state the missing input.
-- If regulatory details are absent, list them as evidence gaps.
-
-Output:
-- Deal snapshot
-- Spread/downside framework
-- Probability drivers
-- Risk table
-- Data used
+使用 **LLMQuant Data** 作为公司报告、价格历史、13F 所有权及背景研究的输入数据来源。说明使用了哪些 LLMQuant Data 能力，引用报告日期和价格区间，不得编造未获取的数据。
 
 ---
 
-## Workflow
+## LLMQuant Data 契约
 
-1. Identify target, acquirer, consideration, announced terms, and expected close date from user input or retrieved filings.
-2. Pull relevant filings for target and acquirer where available.
-3. Pull price history for target and acquirer to frame pre-deal unaffected price and post-announcement trading.
-4. Pull 13F holders when shareholder vote, activism, or arbitrage crowding matters.
-5. Separate hard evidence from assumptions about antitrust, financing, shareholder approval, and timing.
-6. Present the trade as an expected-value problem, not a certainty.
+必需数据能力：
+- SEC 报告发现
+- SEC 报告章节检索
+- 股票价格历史
+
+可选数据能力：
+- ticker 级别 13F 持有人数据
+- 维基知识搜索
+- 论文研究搜索
+
+时效性：
+- 注明每份引用的报告的申报日期和报告期间。
+- 注明用于价差或 downside 分析的价格历史区间。
+- 除非获取或用户提供了当前交易条款和最新价格，否则不得声称确定的当前交易价差。
+
+回退规则：
+- 若交易条款不在已获取的报告中，请用户提供条款或说明缺失输入。
+- 若缺少监管细节，将其列为证据缺口。
+
+输出：
+- 交易快照
+- 价差/downside 框架
+- 概率驱动因素
+- 风险表
+- 所用数据
 
 ---
 
-## Output Format
+## 工作流
 
-Use:
-
-1. **Deal Snapshot**
-2. **Current Setup / Spread Context**
-3. **Probability Tree**: regulatory, financing, shareholder, timing, litigation.
-4. **Downside Case**
-5. **Key Evidence**
-6. **Open Diligence Items**
-7. **Data Used**
+1. 从用户输入或已获取的报告中识别目标公司、收购方、对价、公告条款及预期交割日期。
+2. 拉取目标公司和收购方的相关报告（可用时）。
+3. 拉取目标公司和收购方的价格历史，用于呈现公告前不受影响的价格和公告后的交易情况。
+4. 当股东投票、激进主义或套利拥挤度重要时，拉取 13F 持有人。
+5. 将硬证据与关于反垄断、融资、股东批准及时间线的假设分开。
+6. 将交易呈现为期望值问题，而非确定性事件。
 
 ---
 
-## Guardrails
+## 输出格式
 
-- Do not fabricate deal terms.
-- Do not give legal conclusions.
-- Do not claim borrow availability unless data is provided.
-- Do not use stale prices without labeling their date range.
+使用：
+
+1. **交易快照**
+2. **当前状态 / 价差背景**
+3. **概率树**：监管、融资、股东、时间线、诉讼。
+4. **Downside 情景**
+5. **关键证据**
+6. **待查事项**
+7. **所用数据**
+
+---
+
+## 防护栏
+
+- 不得编造交易条款。
+- 不得给出法律结论。
+- 除非提供了数据，否则不得声称借贷可用性。
+- 使用过期价格时须标注其日期区间。

@@ -1,67 +1,67 @@
 ---
 name: Five-Lens Stock Analysis
-description: Analyze a public equity through fundamentals, valuation, technicals, sentiment, and ownership flow using LLMQuant Data.
+description: 使用 LLMQuant Data 从基本面、估值、技术面、情绪及所有权资金流五个维度分析上市公司股票。
 input_data_source: LLMQuant Data
 pack: research
 ---
 
-# Five-Lens Stock Analysis
+# 五维股票分析
 
-## Purpose
+## 目的
 
-Produce a dated, evidence-first stock view with a composite score, recommendation range, risk flags, target/stop framework, and the data used.
+生成带日期的、以证据为先的股票观点，包含综合评分、建议区间、风险警示、目标/止损框架及所用数据。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** as the input data source for prices, fundamentals, valuation, technicals, filings, institutional ownership, and market sentiment. State returned dates, filing periods, observation dates, and stale-data notices.
+使用 **LLMQuant Data** 作为价格、基本面、估值、技术指标、报告、机构所有权及市场情绪的输入数据来源。注明返回日期、报告期间、观察日期及过期数据提示。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- equity market snapshot data for current price, market cap, sector, volume, and 52-week range.
-- company fundamentals data for revenue growth, margins, ROE, leverage, FCF, dividends, and analyst estimates if available.
-- valuation multiple data for PE, forward PE, PEG, EV/EBITDA, FCF yield, price/sales, and peer percentiles.
-- equity technical indicator data and equity price history for trend, moving averages, RSI, ATR, drawdown, and volatility.
-- SEC filing discovery and SEC filing section retrieval for latest 10-K/10-Q business, MD&A, and risk evidence.
-- ticker-level 13F holder data for sponsorship, concentration, and manager crowding.
-- market sentiment snapshot data for VIX, breadth, put/call, and sector rotation context.
+必需 LLMQuant Data 输入：
+- 股票市场快照数据：当前价格、市值、行业、成交量及 52 周区间。
+- 公司基本面数据：收入增长率、利润率、ROE、杠杆率、FCF、分红及分析师预测（可用时）。
+- 估值倍数数据：PE、远期 PE、PEG、EV/EBITDA、FCF 收益率、市销率及同业百分位。
+- 股票技术指标数据及股票价格历史：趋势、均线、RSI、ATR、回撤及波动率。
+- SEC 报告发现及 SEC 报告章节检索：最新 10-K/10-Q 的业务、MD&A 及风险证据。
+- ticker 级别 13F 持有人数据：发起人情况、集中度及管理人拥挤度。
+- 市场情绪快照数据：VIX、市场广度、看跌/看涨比率及行业轮动背景。
 
-## Scoring Model
+## 评分模型
 
-Score each lens from 0-10:
-- Fundamentals: growth quality, margin durability, balance sheet, FCF conversion.
-- Valuation: absolute multiples, peer-relative multiples, FCF yield versus rates, historical band.
-- Technicals: trend, momentum, support/resistance, ATR risk.
-- Sentiment: market regime, sector sentiment, news/event pressure, volatility backdrop.
-- Flow: 13F sponsorship, concentration, ownership changes, unusual activity if available.
+每个维度评分 0-10：
+- 基本面：增长质量、利润率韧性、资产负债表、FCF 转化率。
+- 估值：绝对倍数、同业相对倍数、FCF 收益率与利率比较、历史区间。
+- 技术面：趋势、动量、支撑/阻力、ATR 风险。
+- 情绪：市场机制、行业情绪、新闻/事件压力、波动率背景。
+- 资金流：13F 发起人情况、集中度、所有权变动、异常活动（可用时）。
 
-Recommendation bands:
-- 8.0-10.0: Strong bullish candidate, subject to risk controls.
-- 6.5-7.9: Bullish/watchlist, needs price or catalyst confirmation.
-- 4.0-6.4: Neutral or mixed.
-- 2.5-3.9: Avoid or reduce.
-- 0-2.4: High-risk avoid unless explicitly hedged.
+建议区间：
+- 8.0-10.0：强烈看多候选，需符合风控条件。
+- 6.5-7.9：看多/关注，需价格或催化剂确认。
+- 4.0-6.4：中性或混合。
+- 2.5-3.9：回避或减仓。
+- 0-2.4：高风险回避，除非明确对冲。
 
-## Workflow
+## 工作流
 
-1. Normalize the ticker and identify exchange/asset coverage.
-2. Pull snapshot, fundamentals, valuation, price history, technicals, filings, 13F, and sentiment.
-3. Check freshness and missing fields before scoring.
-4. Score the five lenses and explain the strongest positive and negative drivers.
-5. Build a target/stop framework using valuation upside, ATR downside, and thesis-break risks.
-6. Separate facts from interpretation and include a data-used block.
+1. 标准化 ticker 并确认交易所/资产覆盖。
+2. 拉取快照、基本面、估值、价格历史、技术指标、报告、13F 及情绪数据。
+3. 在评分前检查时效性和缺失字段。
+4. 对五个维度评分并说明最强正面和负面驱动因素。
+5. 使用估值上行空间、ATR 下行空间及论点破灭风险构建目标/止损框架。
+6. 将事实与解读分开，并包含所用数据模块。
 
-## Output Format
+## 输出格式
 
-1. **Recommendation**: rating, composite score, confidence, target range, stop/risk level.
-2. **Five-Lens Table**: score, key evidence, data date for each lens.
-3. **Bull Case / Bear Case**: concise evidence-based arguments.
-4. **Risk Controls**: stop-loss logic, position sizing hint, thesis-break triggers.
-5. **Data Used**: data capabilities, dates, filing periods, coverage caveats.
+1. **建议**：评级、综合评分、置信度、目标区间、止损/风险水平。
+2. **五维评分表**：每个维度的评分、关键证据、数据日期。
+3. **看多理由 / 看空理由**：简洁的基于证据的论述。
+4. **风控措施**：止损逻辑、仓位建议、论点破灭触发条件。
+5. **所用数据**：数据能力、日期、报告期间、覆盖范围注意事项。
 
-## Guardrails
+## 防护栏
 
-- Do not fill missing financial metrics from memory.
-- Do not imply current fundamentals if only historical filings were retrieved.
-- Do not present a score without showing the evidence driving it.
-- If the ticker is unsupported, state the missing coverage and provide only a framework.
+- 不得凭记忆填补缺失的财务指标。
+- 若仅获取了历史报告，不得暗示当前基本面。
+- 不得在展示评分时不说明驱动该评分的证据。
+- 若 ticker 不受支持，说明缺失的覆盖范围并仅提供分析框架。

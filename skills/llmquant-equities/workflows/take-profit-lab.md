@@ -1,52 +1,52 @@
 ---
 name: Take-Profit Lab
-description: Analyze whether a ticker is suitable for long-term holding or needs systematic profit-taking using LLMQuant Data historical simulations.
+description: 使用 LLMQuant Data 历史模拟分析某 ticker 适合长期持有还是需要系统化止盈。
 input_data_source: LLMQuant Data
 pack: research
 ---
 
-# Take-Profit Lab
+# 止盈实验室
 
-## Purpose
+## 目的
 
-Quantify exit discipline for a stock or ETF: hold forever, tier out, sell all at milestones, use trailing stops, or combine profit-taking with hedges.
+量化股票或 ETF 的退出纪律：永久持有、分批退出、里程碑全部卖出、移动止损，或将止盈与对冲结合。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for historical prices, volatility, corporate actions, and exit-strategy simulations.
+使用 **LLMQuant Data** 获取历史价格、波动率、公司行为及退出策略模拟。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- equity price history adjusted for dividends and splits.
-- equity market snapshot data for current price and liquidity.
-- realized volatility history for realized volatility and drawdown behavior.
-- strategy exit-rule backtest data for entry cohorts, exit rules, CAGR, max drawdown, win rate, and path dependency metrics.
+必需 LLMQuant Data 输入：
+- 经分红和拆股调整的股票价格历史。
+- 股票市场快照数据：当前价格及流动性。
+- 实现波动率历史：实现波动率及回撤行为。
+- 策略退出规则回测数据：入场批次、退出规则、CAGR、最大回撤、胜率及路径依赖指标。
 
-Core metrics:
-- Rollercoaster rate: share of entry cohorts that reached a major gain and then gave back a large fraction of peak profit.
-- Hold CAGR and max drawdown.
-- Median and tail outcomes for each exit strategy.
-- Active-exit improvement or drag versus hold.
+核心指标：
+- 过山车率：入场批次中曾达到大幅浮盈后又回吐大部分峰值利润的比例。
+- 持有 CAGR 及最大回撤。
+- 每种退出策略的中位数和尾部结果。
+- 主动退出相对持有的改善或拖累。
 
-## Workflow
+## 工作流
 
-1. Pull adjusted history and define the simulation window.
-2. Run hold, tiered exits, full-sale triggers, trailing stops, and volatility-aware exits.
-3. Compare return, drawdown, and path pain rather than only CAGR.
-4. Classify the instrument as holdable, tiered-exit preferred, or structurally unsuitable for buy-and-hold.
-5. Translate the winning rule into concrete levels from the user's cost basis when provided.
+1. 拉取调整后历史数据并定义模拟窗口。
+2. 运行持有、分批退出、全部卖出触发、移动止损及波动率感知退出策略。
+3. 比较收益、回撤及路径痛苦，而非仅看 CAGR。
+4. 将标的分类为：适合持有、偏好分批退出或结构性不适合买入持有。
+5. 在用户提供成本基础时，将最优规则转化为具体价位。
 
-## Output Format
+## 输出格式
 
-1. **Exit Verdict**: hold, tier, strict exit, or avoid long hold.
-2. **Headline Metrics**: CAGR, max drawdown, rollercoaster rate, sample size, period.
-3. **Strategy Table**: return, drawdown, rollercoaster rate by rule.
-4. **Action Plan**: sell levels, trailing stop, review cadence.
-5. **Data Used**.
+1. **退出结论**：持有、分批、严格退出或避免长期持有。
+2. **核心指标**：CAGR、最大回撤、过山车率、样本量、期间。
+3. **策略表**：各规则的收益率、回撤、过山车率。
+4. **行动计划**：卖出价位、移动止损、复盘频率。
+5. **所用数据**。
 
-## Guardrails
+## 防护栏
 
-- Do not recommend exits from unadjusted price data.
-- Do not overfit to the single best backtest rule without showing alternatives.
-- For leveraged ETFs, explicitly discuss volatility decay and path dependency.
+- 不得基于未调整的价格数据推荐退出策略。
+- 不得仅展示最优回测规则而不展示替代方案，避免过拟合。
+- 对于杠杆 ETF，须明确讨论波动率衰减和路径依赖。

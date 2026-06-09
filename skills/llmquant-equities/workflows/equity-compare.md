@@ -1,48 +1,48 @@
 ---
 name: Equity Compare
-description: Compare 2-5 stocks or ETFs side by side across fundamentals, valuation, technicals, volatility, sentiment, and flow using LLMQuant Data.
+description: 使用 LLMQuant Data 从基本面、估值、技术面、波动率、情绪及资金流维度并排比较 2-5 只股票或 ETF。
 input_data_source: LLMQuant Data
 pack: research
 ---
 
-# Equity Compare
+# 股票比较
 
-## Purpose
+## 目的
 
-Rank a small set of tickers by the dimensions that matter for the user's question: cheaper valuation, better quality, stronger momentum, lower risk, cleaner ownership, or more attractive volatility setup.
+根据用户问题所关注的维度对少量 ticker 进行排名：更低估值、更高质量、更强动量、更低风险、更干净的所有权结构或更有吸引力的波动率设置。
 
-## Input Data Source
+## 输入数据来源
 
-Use **LLMQuant Data** for all market, fundamental, options, ETF, and ownership evidence. Cite dates and coverage notices for every ticker.
+使用 **LLMQuant Data** 获取所有市场、基本面、期权、ETF 及所有权证据。引用每个 ticker 的日期和覆盖范围说明。
 
-## Data Needed
+## 所需数据
 
-Required LLMQuant Data inputs:
-- equity market snapshot data for price, market cap, sector, liquidity, and recent move.
-- company fundamentals data and valuation multiple data for quality and valuation comparison.
-- equity technical indicator data and equity price history for trend, drawdown, volatility, and relative strength.
-- implied-volatility snapshot data for IV rank, IV percentile, historical volatility, and VRP when optionable.
-- ticker-level 13F holder data for institutional sponsorship and crowding.
-- ETF identity and profile lookup and ETF holdings data when the compared tickers are ETFs.
+必需 LLMQuant Data 输入：
+- 股票市场快照数据：价格、市值、行业、流动性及近期变动。
+- 公司基本面数据及估值倍数数据：用于质量和估值比较。
+- 股票技术指标数据及股票价格历史：用于趋势、回撤、波动率及相对强度。
+- 隐含波动率快照数据：IV 排名、IV 百分位、历史波动率及 VRP（有期权时）。
+- ticker 级别 13F 持有人数据：机构发起人情况及拥挤度。
+- ETF 身份与概况查询及 ETF 持仓数据（比较标的为 ETF 时）。
 
-## Workflow
+## 工作流
 
-1. Accept 2-5 tickers and identify the comparison objective.
-2. Pull the same evidence set for each ticker where coverage exists.
-3. Normalize units and dates so comparisons are fair.
-4. Rank each ticker by dimension and highlight category winners.
-5. Produce an overall ranking only after explaining the weights used.
+1. 接收 2-5 个 ticker 并确定比较目标。
+2. 为每个 ticker 拉取相同的证据集（覆盖范围内）。
+3. 统一单位和日期，确保比较公平。
+4. 按维度对每个 ticker 排名并标注各类别优胜者。
+5. 在说明所用权重后，再给出综合排名。
 
-## Output Format
+## 输出格式
 
-1. **Winner / Ranking**: overall ranking and weighting.
-2. **Comparison Table**: price action, quality, valuation, technicals, volatility, flow.
-3. **Category Winners**: best quality, cheapest valuation, best momentum, lowest risk.
-4. **Decision Notes**: what would change the ranking.
-5. **Data Used**: data capabilities, dates, missing fields, stale warnings.
+1. **优胜者 / 排名**：综合排名及权重说明。
+2. **比较表**：价格走势、质量、估值、技术面、波动率、资金流。
+3. **分类优胜者**：最高质量、最低估值、最佳动量、最低风险。
+4. **决策备注**：什么情况下排名会改变。
+5. **所用数据**：数据能力、日期、缺失字段、过期警告。
 
-## Guardrails
+## 防护栏
 
-- Do not compare metrics retrieved on materially different dates without noting it.
-- Do not force an overall winner when the user's objective is dimension-specific.
-- For ETF comparisons, distinguish holdings overlap from price performance.
+- 不得在获取日期存在实质差异的情况下比较指标而不注明。
+- 当用户目标是特定维度时，不得强求给出综合优胜者。
+- ETF 比较时，区分持仓重叠与价格表现。
