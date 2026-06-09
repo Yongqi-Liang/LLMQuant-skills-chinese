@@ -1,41 +1,41 @@
-# Workflow Name
+# 工作流名称
 
-## Use When
+## 适用场景
 
-Use this workflow when the user asks for ...
+当用户询问……时使用此工作流。
 
-## LLMQuant Data Needed
+## 所需的 LLMQuant Data
 
-Required:
-- Describe the required data capability in natural language, including why it is needed.
+必需：
+- 用自然语言描述所需的数据能力，并说明原因。
 
-Optional or future:
-- Describe optional or future data capabilities, including how they would be used.
+可选或未来：
+- 描述可选或未来的数据能力，并说明其用途。
 
-Freshness:
-- State observation dates, filing periods, as-of dates, and stale-data notices.
+时效性：
+- 注明观察日期、报告期间、数据截止日期及过期数据提示。
 
-Fallback:
-- If a required input is unavailable, name the missing LLMQuant Data input and continue only with retrieved evidence.
+回退规则：
+- 若某项必需输入不可用，指明缺失的 LLMQuant Data 输入，并仅使用已获取的证据继续。
 
-## Workflow
+## 工作流
 
-1. Confirm identifiers, horizon, and output target.
-2. Pull required LLMQuant Data.
-3. Check coverage, dates, and missing fields.
-4. Separate evidence from interpretation.
-5. Produce the output format below.
+1. 确认标识、时间范围及输出目标。
+2. 拉取所需的 LLMQuant Data。
+3. 检查覆盖范围、日期及缺失字段。
+4. 将证据与解读分开。
+5. 按下方格式生成输出。
 
-## Output Format
+## 输出格式
 
-1. **Answer**
-2. **Evidence**
-3. **Scenario / Sensitivity**
-4. **Risks / Caveats**
-5. **Data Used**
+1. **结论**
+2. **证据**
+3. **情景 / 敏感性分析**
+4. **风险 / 注意事项**
+5. **所用数据**
 
-## Guardrails
+## 防护栏
 
-- Do not invent missing values.
-- Do not present model output as data.
-- Do not make personalized financial advice claims.
+- 不得编造缺失值。
+- 不得将模型输出呈现为数据。
+- 不得做出个性化投资建议的声明。
